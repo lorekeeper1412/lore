@@ -1033,7 +1033,7 @@ end
 }
 
 Tab:Button{
-	Name = "Patric by Zer0EXE Edited By 7n8z",
+	Name = "Patrick by Zer0EXE Edited By 7n8z",
 	Description = nil,
 	Callback = function()
     local Patrick1 = Instance.new("Model") 
