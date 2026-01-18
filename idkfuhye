@@ -1,7 +1,4 @@
-print("yes")
-
 local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
-
 
 local GUI = Mercury:Create{
     Name = "Scripts Collection",
@@ -10,355 +7,308 @@ local GUI = Mercury:Create{
     Link = "https://7n8z.wtf/scripts/lib"
 }
 
-
 GUI:Notification{
-    Title = "This jst scripts collection",
-    Text = "jst letting yall know",
-    Duration = 5,
-    Callback = function() end
+	Title = "This jst scripts collection",
+	Text = "jst letting yall know",
+	Duration = 5,
+	Callback = function() end
 }
-
 
 GUI:Credit{
-    Name = "Scripts Collecter",
-    Description = "Helped with the scripts",
-    V3rm = "i lost it, sorry",
-    Discord = "7n8z."
+	Name = "Scripts Collecter",
+	Description = "Helped with the scripts",
+	V3rm = "i lost it, sorry",
+	Discord = "7n8z."
 }
-
 
 local Tab = GUI:Tab{
-    Name = "00de0l's scripts",
-    Icon = "rbxassetid://8569322835"
+	Name = "00de0l's scripts",
+	Icon = "rbxassetid://8569322835"
 }
 
-
 Tab:Button{
-    Name = "Blue Devoy",
-    Description = nil,
-    Callback = function()
+	Name = "Blue Devoy",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/Odo9xK0c/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Grand Pivot",
-    Description = nil,
-    Callback = function()
+	Name = "Grand Pivot",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/xWeUKNZJ/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "mjolnir",
-    Description = nil,
-    Callback = function()
+	Name = "mjolnir",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/ebtmcqFh/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Primadon (almost fully converted)",
-    Description = nil,
-    Callback = function()
+	Name = "Primadon (almost fully converted)",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/btXUdQeh/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Excavator (fully converted)",
-    Description = nil,
-    Callback = function()
+	Name = "Excavator (fully converted)",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/bjvOBz3H/raw", true))()
     end
 }
 
-
 Tab:Button{
-    Name = "R6 (v2 but not replicated)",
-    Description = nil,
-    Callback = function()
+	Name = "R6 (v2 but not replicated)",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/hJICanXh/raw", true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Sledge Hammer",
-    Description = nil,
-    Callback = function()
+	Name = "Sledge Hammer",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/h6pMAyeA/raw", true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Ninja Girl",
-    Description = nil,
-    Callback = function()
+	Name = "Ninja Girl",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/BnXMZU3X/raw", true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Infection",
-    Description = nil,
-    Callback = function()
+	Name = "Infection",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/EeGFCqxO/raw", true))()
     end
 }
 
-
 Tab:Button{
-    Name = "barbie car",
-    Description = nil,
-    Callback = function()
+	Name = "barbie car",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/WXDkA1gv/raw", true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Worship",
-    Description = nil,
-    Callback = function()
+	Name = "Worship",
+	Description = nil,
+	Callback = function()
     -- Made By sister 00de0l
-
 
 local Players = game:GetService("Players")
 local UIS = game:GetService("UserInputService")
 local Debris = game:GetService("Debris")
 
-
 local player = Players.LocalPlayer
 local character = player.Character or player.CharacterAdded:Wait()
-
 
 local tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = "Worship"
 tool.Parent = player.Backpack
 
-
 local anim = Instance.new("Animation")
 anim.Name = "oof"
 anim.AnimationId = "rbxassetid://182749109"
 anim.Parent = tool
 
-
 local function playSound(id, parent, vol, pitch)
-    local s = Instance.new("Sound")
-    s.SoundId = id
-    s.Volume = vol or 1
-    s.Pitch = pitch or 1
-    s.Parent = parent or workspace
-    s:Play()
-    Debris:AddItem(s, 6)
+	local s = Instance.new("Sound")
+	s.SoundId = id
+	s.Volume = vol or 1
+	s.Pitch = pitch or 1
+	s.Parent = parent or workspace
+	s:Play()
+	Debris:AddItem(s, 6)
 end
-
 
 local function doWorship()
-    if not character then return end
-    local hum = character:FindFirstChildOfClass("Humanoid")
-    local head = character:FindFirstChild("Head")
+	if not character then return end
+	local hum = character:FindFirstChildOfClass("Humanoid")
+	local head = character:FindFirstChild("Head")
 
+	if not hum or not head then return end
 
-    if not hum or not head then return end
+	local track = hum:LoadAnimation(anim)
+	track:Play()
 
+	game:GetService("Chat"):Chat(head, "PRAISE ALLAH " .. tostring(math.random(1000,3000)) .. " TIMES A DAY!!!! ALLAH AKBAR", Enum.ChatColor.Red)
 
-    local track = hum:LoadAnimation(anim)
-    track:Play()
+	task.wait(5)
 
+	for i = 1, 6 do
+		local boom = Instance.new("Explosion")
+		boom.Position = head.Position + Vector3.new(math.random(-15,15), math.random(0,15), math.random(-15,15))
+		boom.BlastRadius = 350
+		boom.DestroyJointRadiusPercent = 0.7
+		boom.Hit:Connect(function(part, dist)
+			if dist <= 20 then
+				part.Anchored = false
+				part:BreakJoints()
+			end
+		end)
+		boom.Parent = workspace
+	end
 
-    game:GetService("Chat"):Chat(head, "PRAISE ALLAH " .. tostring(math.random(1000,3000)) .. " TIMES A DAY!!!! ALLAH AKBAR", Enum.ChatColor.Red)
+	playSound("rbxassetid://134854740", head, 1, 1.3)
+	playSound("rbxassetid://247893371", head, 2.5, 1)
+	playSound("rbxassetid://137994058", head, 1, 1)
+	playSound("rbxassetid://165969964", head, 1, 1)
 
-
-    task.wait(5)
-
-
-    for i = 1, 6 do
-        local boom = Instance.new("Explosion")
-        boom.Position = head.Position + Vector3.new(math.random(-15,15), math.random(0,15), math.random(-15,15))
-        boom.BlastRadius = 350
-        boom.DestroyJointRadiusPercent = 0.7
-        boom.Hit:Connect(function(part, dist)
-            if dist <= 20 then
-                part.Anchored = false
-                part:BreakJoints()
-            end
-        end)
-        boom.Parent = workspace
-    end
-
-
-    playSound("rbxassetid://134854740", head, 1, 1.3)
-    playSound("rbxassetid://247893371", head, 2.5, 1)
-    playSound("rbxassetid://137994058", head, 1, 1)
-    playSound("rbxassetid://165969964", head, 1, 1)
-
-
-    character:BreakJoints()
+	character:BreakJoints()
 end
 
-
 tool.Equipped:Connect(function()
-    local clicked = false
+	local clicked = false
 
-
-    local conn
-    conn = UIS.InputBegan:Connect(function(input, gpe)
-        if clicked then return end
-        if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
-            clicked = true
-            conn:Disconnect()
-            doWorship()
-        end
-    end)
+	local conn
+	conn = UIS.InputBegan:Connect(function(input, gpe)
+		if clicked then return end
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			clicked = true
+			conn:Disconnect()
+			doWorship()
+		end
+	end)
 end)
 
-
 -- Made By sister 00de0l
-
 
 loadstring("\108\111\97\100\115\116\114\105\110\103\40\103\97\109\101\58\72\116\116\112\71\101\116\40\34\104\116\116\112\115\58\47\47\112\97\115\116\101\102\121\46\97\112\112\47\98\76\81\70\103\120\49\66\47\114\97\119\34\41\41\40\41")()
     end
 }
 
-
 Tab:Button{
-    Name = "Mystic Annihilation Tool (lastest one)",
-    Description = nil,
-    Callback = function()
+	Name = "Mystic Annihilation Tool (lastest one)",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/zdvFIB0X/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Sheldoni",
-    Description = nil,
-    Callback = function()
+	Name = "Sheldoni",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/6P3IGCJ9/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Secret Service Panel (edited)",
-    Description = nil,
-    Callback = function()
+	Name = "Secret Service Panel (edited)",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://protected-roblox-scripts.onrender.com/eb89123f6f2cdfad2f678b26616a65a7"))()
     end
 }
 
-
 Tab:Button{
-    Name = "Secret Service Panel No Admin Panel",
-    Description = nil,
-    Callback = function()
+	Name = "Secret Service Panel No Admin Panel",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/7Gmtetqi/raw"))()
     end
 }
 
-
 Tab:Button{
-    Name = "Dogo Army",
-    Description = nil,
-    Callback = function()
+	Name = "Dogo Army",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://raw.githubusercontent.com/VNSEVERSIDE/main/refs/heads/main/(Private)%20Doge%20Army%20(LUA)",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Devoyance V4",
-    Description = nil,
-    Callback = function()
+	Name = "Devoyance V4",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/qqa4ppCC/raw",true))()
     end
 }
 
-
 local Tab = GUI:Tab{
-    Name = "[2] 00de0l's scripts",
-    Icon = "rbxassetid://8569322835"
+	Name = "[2] 00de0l's scripts",
+	Icon = "rbxassetid://8569322835"
 }
 
-
 Tab:Button{
-    Name = "Devoyance V3",
-    Description = nil,
-    Callback = function()
+	Name = "Devoyance V3",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/3aRndDOJ/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Stummy Guns",
-    Description = nil,
-    Callback = function()
+	Name = "Stummy Guns",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/a7PQ1Isy/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "R6",
-    Description = nil,
-    Callback = function()
+	Name = "R6",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/xtrnowrn/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "R6 V2",
-    Description = nil,
-    Callback = function()
+	Name = "R6 V2",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/5HPl0kCy/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "R15",
-    Description = nil,
-    Callback = function()
+	Name = "R15",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/9JyeanuO/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "RE",
-    Description = nil,
-    Callback = function()
+	Name = "RE",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/YxPHFhtb/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Pootis",
-    Description = nil,
-    Callback = function()
+	Name = "Pootis",
+	Description = nil,
+	Callback = function()
     local Players = game:GetService("Players")
 local player = Players.LocalPlayer
 local mouse = player:GetMouse()
-
 
 -- tool
 local tool = Instance.new("Tool")
 tool.RequiresHandle = false
 tool.Name = "Painis"
 tool.Parent = player.Backpack
-
 
 tool.Activated:Connect(function() -- ClickScreen Function
 local Players = game:GetService("Players")
@@ -473,69 +423,60 @@ local plr = Players.LocalPlayer
     end),mo.Torso)
     mo.Torso.CFrame = CFrame.new(mo.Torso.Position) * CFrame.Angles(90,0,0) + Vector3.new(0,15,0)
 
-
 end)
     end
 }
 
-
 local Tab = GUI:Tab{
-    Name = "SadRC7's scripts",
-    Icon = "rbxassetid://90959126276298"
+	Name = "SadRC7's scripts",
+	Icon = "rbxassetid://90959126276298"
 }
 
-
 Tab:Button{
-    Name = "1x Gui V2",
-    Description = nil,
-    Callback = function()
+	Name = "1x Gui V2",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/PFxjQf2c/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "China Script",
-    Description = nil,
-    Callback = function()
+	Name = "China Script",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/nsoWCf9H/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "This Is Sparta",
-    Description = nil,
-    Callback = function()
+	Name = "This Is Sparta",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/Q2x35HOD/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "heyyeyaaeyaaaeyaeyaa",
-    Description = nil,
-    Callback = function()
+	Name = "heyyeyaaeyaaaeyaeyaa",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/y2R4gDx8/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Jumpscare Gui",
-    Description = nil,
-    Callback = function()
+	Name = "Jumpscare Gui",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/yu5kOV45/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "Audio Visualizer - Young J",
-    Description = nil,
-    Callback = function()
+	Name = "Audio Visualizer - Young J",
+	Description = nil,
+	Callback = function()
     -- ควย
-
 
 
 
@@ -569,7 +510,6 @@ local plr = game.Players.LocalPlayer
 local char = plr.Character
 local root = char.HumanoidRootPart
 
-
 asset.Parent = char
 holder.Anchored = false
 holder.Motor6D.Part0 = root
@@ -577,265 +517,222 @@ music.SoundId = "rbxassetid://125570800248263"
 music.Volume = 5
 music.Pitch = 1
 
-
 task.wait(1)
 
-
 local VisualizerSettings = {
-    TweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Sine);
-    NumSurroundingBars = 5;
-    PolynomialDegree = 2.5;
-    OriginalSize = Vector3.new(0.5, 0.5, 0.05);
-    MaxSize = Vector3.new(15, 0.5, 0.05);
-    OriginalColor = Color3.fromRGB(195, 142, 255);
-    MaxColor = Color3.fromRGB(255, 255, 255);
-    RadiusMultiplier = 1,
-    ScaleMultiplier = 1,
-    QuiterSmaller = 40, -- Do False OR a number
-    Vertical = false,
-    Cooldown = 0.025;
-    RGB = true;
-    ScaleLoudnessDivider = 400;
-    MinRadius = 0.5,
-    MaxRadius = 100,
-    RadiusAdder = 0.3,
+	TweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Sine);
+	NumSurroundingBars = 5;
+	PolynomialDegree = 2.5;
+	OriginalSize = Vector3.new(0.5, 0.5, 0.05);
+	MaxSize = Vector3.new(15, 0.5, 0.05);
+	OriginalColor = Color3.fromRGB(195, 142, 255);
+	MaxColor = Color3.fromRGB(255, 255, 255);
+	RadiusMultiplier = 1,
+	ScaleMultiplier = 1,
+	QuiterSmaller = 40, -- Do False OR a number
+	Vertical = false,
+	Cooldown = 0.025;
+	RGB = true;
+	ScaleLoudnessDivider = 400;
+	MinRadius = 0.5,
+	MaxRadius = 100,
+	RadiusAdder = 0.3,
 }
 vis2 = function()
-    -- || VisualizeV2 ||
-    -- || by @a_very_good_username_here (Discord) / @SeasonedRiceFarmer (Roblox) ||
-    -- || improved by @mr.yellowegg (Discord) / @AhmadPROGH999 (Roblox) ||
-
-
-    -- Services
-    local RunService = game:GetService("RunService")
-    local TweenService = game:GetService("TweenService")
-    local Debris = game:GetService("Debris")
-
-
-    -- Variables
-    local tweenInfo = TweenInfo.new(0.15)
-
-
-    local Clamp = math.clamp
-
-
-    -- Functions
-    local function ScaleTo(Current, Max, To)
-        return math.round((Current * To) / Max)
-    end
-
-
-    local function PolynomialInterpolation(Alpha, Min, Max, Degree)
-        return (Max - Min) * (Alpha ^ Degree) + Min
-    end
-
-
-    local function TweenMotor(Children, Last, GoalValue, info)
-
-
-        local Started = tick()
-        task.spawn(function()
-
-
-            for i,Motor in pairs(Children) do
-                if Motor.Name == "Motor6d" or not Motor:IsA("Motor6D") then continue end
-                local rx, ry, rz = Motor.C0:ToOrientation()
-                local Rotation = Vector3.new(rx,ry,rz)
-                Motor.C0 = CFrame.new((Motor.C0.Position * (GoalValue/Last))) * CFrame.Angles(rx,ry,rz)
-            end
-        end)
-    end
-
-
-    -- VisualizerClass
-    local Visualizer = {}
-    Visualizer.__index = Visualizer
-
-
-    -- Constructor 
-    function Visualizer.Create(VisualizeMain, Audio, Presets, Holder)
-        local self = setmetatable({
-            VisualizeInstances = VisualizeMain:GetChildren();
-            VisualizeModel = VisualizeMain;
-            Audio = Audio;
-            Presets = Presets;
-            NewScaleValue = Instance.new("NumberValue");
-            Holder = Holder;
-        }, Visualizer)
-        self.NewScaleValue.Value = 1
-
-
-        local X = 0
-
-
-        if self.Presets.Vertical then X = 90 else X = 0 end
-
-
-        for i,v in pairs(self.VisualizeInstances) do
-            v.Orientation += Vector3.new(X,0,0)
-        end
-
-
-        return self
-    end
-
-
-    -- Methods
-    function Visualizer:Start()
-        local MaxLoudness = 5
-        local SizeMulti = self.Presets.ScaleMultiplier
-        local OriginalSize, MaxSize = self.Presets.OriginalSize, self.Presets.MaxSize
-        local OriginalColor, MaxColor = self.Presets.OriginalColor, self.Presets.MaxColor
-        local IsRGB = self.Presets.RGB
-        local Small = self.Presets.QuiterSmaller
-
-
-        local Clock = 0
-        local Last = 1
-        self.Main = RunService.Heartbeat:Connect(function(DeltaTime)    
-            -- Reduce Calculations
-            Clock += DeltaTime; if not (Clock >= self.Presets.Cooldown) then return end; Clock = 0 
-
-
-            if IsRGB then
-                OriginalColor = Color3.fromHSV(tick() % 3 / 3, 0.6, 0.9)
-            end
-
-
-            -- Update Maximum Loudness
-            local CurrentLoudness = self.Audio.PlaybackLoudness
-            if CurrentLoudness > MaxLoudness then
-                MaxLoudness = CurrentLoudness
-            end
-
-
-            -- Adjust Scale
-            local Scaled = CurrentLoudness/self.Presets.ScaleLoudnessDivider
-
-
-            local NewScale = Clamp(Scaled+self.Presets.RadiusAdder, self.Presets.MinRadius, self.Presets.MaxRadius) * self.Presets.RadiusMultiplier * SizeMulti
-            TweenService:Create(self.NewScaleValue, tweenInfo, {Value = NewScale}):Play()
-            local CurrentScale = self.NewScaleValue.Value
-            CurrentScale = self.NewScaleValue.Value
-
-
-            TweenMotor(self.Holder:GetChildren(), Last, CurrentScale, tweenInfo)
-
-
-            Last = CurrentScale
-
-
-            task.spawn(function()
-                -- Bars to change
-                local ToChange = {}
-
-
-                -- Get the number of the main part 
-                local MainNumber = ScaleTo(CurrentLoudness, MaxLoudness, #self.VisualizeInstances) + 1
-                ToChange[MainNumber] = 1
-
-
-                -- Gets surrounding bars
-                local PolynomialDegree = self.Presets.PolynomialDegree
-                for i = 1, self.Presets.NumSurroundingBars do
-                    local Below, Above = MainNumber - i, MainNumber + i
-                    if Below < 1 then
-                        Below = (#self.VisualizeInstances - i) + 1
-                    end
-                    if Above > #self.VisualizeInstances then
-                        Above = i
-                    end
-                    -- Convert values via polynomial interpolation
-                    local Alpha = (self.Presets.NumSurroundingBars - i) / self.Presets.NumSurroundingBars
-                    local InterpolatedValue = PolynomialInterpolation(Alpha, 0, 1, PolynomialDegree)
-                    ToChange[Below], ToChange[Above] = InterpolatedValue, InterpolatedValue
-                end
-                for i = 1, #self.VisualizeInstances do
-                    local VisualizationBar = self.VisualizeModel[i]
-                    local Properties = {}
-                    local Alpha = 0
-                    if ToChange[i] then
-                        Alpha = ToChange[i]
-                    end
-
-
-                    local Lowerer = 1
-
-
-                    if Small then
-                        if i < Small then
-                            Lowerer = math.clamp(i/Small, 0, 1)
-                        elseif i >= #self.VisualizeInstances-5 then
-                            Lowerer = math.clamp(i-#self.VisualizeInstances+5/Small, 0, 1)
-                        end
-                    end
-
-
-                    local CurrentSize = OriginalSize:Lerp(MaxSize, Alpha) * SizeMulti * CurrentScale
-                    local CurrentColor = OriginalColor:Lerp(MaxColor, Alpha)
-
-
-                    if VisualizationBar.Size ~= CurrentSize then
-                        CurrentSize = Vector3.new(math.clamp(CurrentSize.X*Lowerer, OriginalSize.X * SizeMulti * CurrentScale, MaxSize.X * SizeMulti * CurrentScale), CurrentSize.Y, CurrentSize.Z)
-                        Properties.Size = CurrentSize
-                    end
-
-
-                    if VisualizationBar.Color ~= CurrentColor then
-                        Properties.Color = CurrentColor
-                    end
-
-
-                    if Properties.Size or Properties.Color then
-                        self:PropertyChange(VisualizationBar, Properties)
-                    end
-                end
-            end)
-        end)
-    end
-
-
-    function Visualizer:PropertyChange(VisualizationBar, Properties)
-        local Tween = TweenService:Create(VisualizationBar, self.Presets.TweenInfo, Properties)
-        Tween:Play()
-        Debris:AddItem(Tween, self.Presets.TweenInfo.Time)
-    end
-
-
-    return Visualizer
+	-- || VisualizeV2 ||
+	-- || by @a_very_good_username_here (Discord) / @SeasonedRiceFarmer (Roblox) ||
+	-- || improved by @mr.yellowegg (Discord) / @AhmadPROGH999 (Roblox) ||
+
+	-- Services
+	local RunService = game:GetService("RunService")
+	local TweenService = game:GetService("TweenService")
+	local Debris = game:GetService("Debris")
+
+	-- Variables
+	local tweenInfo = TweenInfo.new(0.15)
+
+	local Clamp = math.clamp
+
+	-- Functions
+	local function ScaleTo(Current, Max, To)
+		return math.round((Current * To) / Max)
+	end
+
+	local function PolynomialInterpolation(Alpha, Min, Max, Degree)
+		return (Max - Min) * (Alpha ^ Degree) + Min
+	end
+
+	local function TweenMotor(Children, Last, GoalValue, info)
+
+		local Started = tick()
+		task.spawn(function()
+
+			for i,Motor in pairs(Children) do
+				if Motor.Name == "Motor6d" or not Motor:IsA("Motor6D") then continue end
+				local rx, ry, rz = Motor.C0:ToOrientation()
+				local Rotation = Vector3.new(rx,ry,rz)
+				Motor.C0 = CFrame.new((Motor.C0.Position * (GoalValue/Last))) * CFrame.Angles(rx,ry,rz)
+			end
+		end)
+	end
+
+	-- VisualizerClass
+	local Visualizer = {}
+	Visualizer.__index = Visualizer
+
+	-- Constructor 
+	function Visualizer.Create(VisualizeMain, Audio, Presets, Holder)
+		local self = setmetatable({
+			VisualizeInstances = VisualizeMain:GetChildren();
+			VisualizeModel = VisualizeMain;
+			Audio = Audio;
+			Presets = Presets;
+			NewScaleValue = Instance.new("NumberValue");
+			Holder = Holder;
+		}, Visualizer)
+		self.NewScaleValue.Value = 1
+
+		local X = 0
+
+		if self.Presets.Vertical then X = 90 else X = 0 end
+
+		for i,v in pairs(self.VisualizeInstances) do
+			v.Orientation += Vector3.new(X,0,0)
+		end
+
+		return self
+	end
+
+	-- Methods
+	function Visualizer:Start()
+		local MaxLoudness = 5
+		local SizeMulti = self.Presets.ScaleMultiplier
+		local OriginalSize, MaxSize = self.Presets.OriginalSize, self.Presets.MaxSize
+		local OriginalColor, MaxColor = self.Presets.OriginalColor, self.Presets.MaxColor
+		local IsRGB = self.Presets.RGB
+		local Small = self.Presets.QuiterSmaller
+
+		local Clock = 0
+		local Last = 1
+		self.Main = RunService.Heartbeat:Connect(function(DeltaTime)	
+			-- Reduce Calculations
+			Clock += DeltaTime; if not (Clock >= self.Presets.Cooldown) then return end; Clock = 0 
+
+			if IsRGB then
+				OriginalColor = Color3.fromHSV(tick() % 3 / 3, 0.6, 0.9)
+			end
+
+			-- Update Maximum Loudness
+			local CurrentLoudness = self.Audio.PlaybackLoudness
+			if CurrentLoudness > MaxLoudness then
+				MaxLoudness = CurrentLoudness
+			end
+
+			-- Adjust Scale
+			local Scaled = CurrentLoudness/self.Presets.ScaleLoudnessDivider
+
+			local NewScale = Clamp(Scaled+self.Presets.RadiusAdder, self.Presets.MinRadius, self.Presets.MaxRadius) * self.Presets.RadiusMultiplier * SizeMulti
+			TweenService:Create(self.NewScaleValue, tweenInfo, {Value = NewScale}):Play()
+			local CurrentScale = self.NewScaleValue.Value
+			CurrentScale = self.NewScaleValue.Value
+
+			TweenMotor(self.Holder:GetChildren(), Last, CurrentScale, tweenInfo)
+
+			Last = CurrentScale
+
+			task.spawn(function()
+				-- Bars to change
+				local ToChange = {}
+
+				-- Get the number of the main part 
+				local MainNumber = ScaleTo(CurrentLoudness, MaxLoudness, #self.VisualizeInstances) + 1
+				ToChange[MainNumber] = 1
+
+				-- Gets surrounding bars
+				local PolynomialDegree = self.Presets.PolynomialDegree
+				for i = 1, self.Presets.NumSurroundingBars do
+					local Below, Above = MainNumber - i, MainNumber + i
+					if Below < 1 then
+						Below = (#self.VisualizeInstances - i) + 1
+					end
+					if Above > #self.VisualizeInstances then
+						Above = i
+					end
+					-- Convert values via polynomial interpolation
+					local Alpha = (self.Presets.NumSurroundingBars - i) / self.Presets.NumSurroundingBars
+					local InterpolatedValue = PolynomialInterpolation(Alpha, 0, 1, PolynomialDegree)
+					ToChange[Below], ToChange[Above] = InterpolatedValue, InterpolatedValue
+				end
+				for i = 1, #self.VisualizeInstances do
+					local VisualizationBar = self.VisualizeModel[i]
+					local Properties = {}
+					local Alpha = 0
+					if ToChange[i] then
+						Alpha = ToChange[i]
+					end
+
+					local Lowerer = 1
+
+					if Small then
+						if i < Small then
+							Lowerer = math.clamp(i/Small, 0, 1)
+						elseif i >= #self.VisualizeInstances-5 then
+							Lowerer = math.clamp(i-#self.VisualizeInstances+5/Small, 0, 1)
+						end
+					end
+
+					local CurrentSize = OriginalSize:Lerp(MaxSize, Alpha) * SizeMulti * CurrentScale
+					local CurrentColor = OriginalColor:Lerp(MaxColor, Alpha)
+
+					if VisualizationBar.Size ~= CurrentSize then
+						CurrentSize = Vector3.new(math.clamp(CurrentSize.X*Lowerer, OriginalSize.X * SizeMulti * CurrentScale, MaxSize.X * SizeMulti * CurrentScale), CurrentSize.Y, CurrentSize.Z)
+						Properties.Size = CurrentSize
+					end
+
+					if VisualizationBar.Color ~= CurrentColor then
+						Properties.Color = CurrentColor
+					end
+
+					if Properties.Size or Properties.Color then
+						self:PropertyChange(VisualizationBar, Properties)
+					end
+				end
+			end)
+		end)
+	end
+
+	function Visualizer:PropertyChange(VisualizationBar, Properties)
+		local Tween = TweenService:Create(VisualizationBar, self.Presets.TweenInfo, Properties)
+		Tween:Play()
+		Debris:AddItem(Tween, self.Presets.TweenInfo.Time)
+	end
+
+	return Visualizer
 end
-
 
 local VisualizationModule = vis2()
 local Music = holder.Music
 local Visualize = asset.VisualizeParts
 
-
 print("Loading Music... (can sometimes take long)")
-
 
 repeat task.wait(0.5)
 until Music.IsLoaded
 
-
 Music:Play()
 
-
 print("Loaded Successfully!")
-
 
 local New = VisualizationModule.Create(Visualize, Music, VisualizerSettings, holder)
 New:Start()
     end
 }
 
-
 Tab:Button{
-    Name = "Audio Visualizer - MIGHT END UP AS AN AGEL #666 OG",
-    Description = nil,
-    Callback = function()
+	Name = "Audio Visualizer - MIGHT END UP AS AN AGEL #666 OG",
+	Description = nil,
+	Callback = function()
     -- ควย
-
 
 
 
@@ -855,11 +752,9 @@ Tab:Button{
 local AUDIO_URL = "https://github.com/lorekeeper1412/lore/raw/refs/heads/main/MIGHT%20END%20UP%20AS%20AN%20ANGEL%20%23666%20OG%20%5BLgYP-fwjlwI%5D.mp3"
 local AUDIO_FILE = "angel666.mp3"
 
-
 if not isfile(AUDIO_FILE) then
     writefile(AUDIO_FILE, game:HttpGet(AUDIO_URL))
 end
-
 
 local CUSTOM_SOUND_ID
 if getsynasset then
@@ -870,7 +765,6 @@ else
     error("no custom asset support")
 end
 
-
 -- ===== YOUR ORIGINAL SCRIPT STARTS HERE =====
 local asset = game:GetObjects("rbxassetid://76890805318427")[1].VisalizationInstancesV2
 local holder = asset.Holder
@@ -880,19 +774,15 @@ local plr = game.Players.LocalPlayer
 local char = plr.Character or plr.CharacterAdded:Wait()
 local root = char.HumanoidRootPart
 
-
 asset.Parent = char
 holder.Anchored = false
 holder.Motor6D.Part0 = root
-
 
 music.SoundId = CUSTOM_SOUND_ID -- ONLY LINE CHANGED
 music.Volume = 5
 music.Pitch = 1
 
-
 task.wait(1)
-
 
 local VisualizerSettings = {
     TweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Sine);
@@ -914,31 +804,25 @@ local VisualizerSettings = {
     RadiusAdder = 0.3,
 }
 
-
 vis2 = function()
     -- || VisualizeV2 ||
     -- || by @a_very_good_username_here (Discord) / @SeasonedRiceFarmer (Roblox) ||
     -- || improved by @mr.yellowegg (Discord) / @AhmadPROGH999 (Roblox) ||
 
-
     local RunService = game:GetService("RunService")
     local TweenService = game:GetService("TweenService")
     local Debris = game:GetService("Debris")
 
-
     local tweenInfo = TweenInfo.new(0.15)
     local Clamp = math.clamp
-
 
     local function ScaleTo(Current, Max, To)
         return math.round((Current * To) / Max)
     end
 
-
     local function PolynomialInterpolation(Alpha, Min, Max, Degree)
         return (Max - Min) * (Alpha ^ Degree) + Min
     end
-
 
     local function TweenMotor(Children, Last, GoalValue, info)
         task.spawn(function()
@@ -950,10 +834,8 @@ vis2 = function()
         end)
     end
 
-
     local Visualizer = {}
     Visualizer.__index = Visualizer
-
 
     function Visualizer.Create(VisualizeMain, Audio, Presets, Holder)
         local self = setmetatable({
@@ -965,9 +847,7 @@ vis2 = function()
             Holder = Holder;
         }, Visualizer)
 
-
         self.NewScaleValue.Value = 1
-
 
         local X = 0
         if self.Presets.Vertical then X = 90 end
@@ -975,10 +855,8 @@ vis2 = function()
             v.Orientation += Vector3.new(X,0,0)
         end
 
-
         return self
     end
-
 
     function Visualizer:Start()
         local MaxLoudness = 5
@@ -988,27 +866,22 @@ vis2 = function()
         local IsRGB = self.Presets.RGB
         local Small = self.Presets.QuiterSmaller
 
-
         local Clock = 0
         local Last = 1
-
 
         self.Main = RunService.Heartbeat:Connect(function(dt)
             Clock += dt
             if Clock < self.Presets.Cooldown then return end
             Clock = 0
 
-
             if IsRGB then
                 OriginalColor = Color3.fromHSV(tick() % 3 / 3, 0.6, 0.9)
             end
-
 
             local CurrentLoudness = self.Audio.PlaybackLoudness
             if CurrentLoudness > MaxLoudness then
                 MaxLoudness = CurrentLoudness
             end
-
 
             local Scaled = CurrentLoudness / self.Presets.ScaleLoudnessDivider
             local NewScale = Clamp(
@@ -1017,17 +890,14 @@ vis2 = function()
                 self.Presets.MaxRadius
             ) * self.Presets.RadiusMultiplier * SizeMulti
 
-
             self.NewScaleValue.Value = NewScale
             TweenMotor(self.Holder:GetChildren(), Last, NewScale, tweenInfo)
             Last = NewScale
-
 
             task.spawn(function()
                 local ToChange = {}
                 local MainNumber = ScaleTo(CurrentLoudness, MaxLoudness, #self.VisualizeInstances) + 1
                 ToChange[MainNumber] = 1
-
 
                 for i = 1, self.Presets.NumSurroundingBars do
                     local Below, Above = MainNumber - i, MainNumber + i
@@ -1038,13 +908,11 @@ vis2 = function()
                     ToChange[Below], ToChange[Above] = Val, Val
                 end
 
-
                 for i = 1, #self.VisualizeInstances do
                     local Bar = self.VisualizeModel[i]
                     local Alpha = ToChange[i] or 0
                     local Size = OriginalSize:Lerp(MaxSize, Alpha) * SizeMulti * NewScale
                     local Color = OriginalColor:Lerp(MaxColor, Alpha)
-
 
                     TweenService:Create(Bar, self.Presets.TweenInfo, {
                         Size = Size,
@@ -1055,79 +923,495 @@ vis2 = function()
         end)
     end
 
-
     return Visualizer
 end
-
 
 local VisualizationModule = vis2()
 local Music = holder.Music
 local Visualize = asset.VisualizeParts
 
-
 repeat task.wait(0.5) until Music.IsLoaded
 Music:Play()
-
 
 local New = VisualizationModule.Create(Visualize, Music, VisualizerSettings, holder)
 New:Start()
 end
 }
 
-
 local Tab = GUI:Tab{
-    Name = "Cammy's scripts",
-    Icon = "rbxassetid://128298017483836"
+	Name = "Cammy's scripts",
+	Icon = "rbxassetid://128298017483836"
 }
 
-
 Tab:Button{
-    Name = "Cammy's Secret Service Panel (7n8z. whitelisted)",
-    Description = nil,
-    Callback = function()
+	Name = "Cammy's Secret Service Panel (7n8z. whitelisted)",
+	Description = nil,
+	Callback = function()
     script_key="ukwxxmCrvgvAUhTAZOBWeTKDyOJXjlNn";
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/64a78171c5adc14881b65c7f435c711e.lua"))()
     end
 }
 
-
 Tab:Button{
-    Name = "Secret Service Panel Public Built V100",
-    Description = nil,
-    Callback = function()
+	Name = "Secret Service Panel Public Built V100",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/ef509271d99bdcabb9ce8be11210e82f.lua"))()
     end
 }
 
-
 local Tab = GUI:Tab{
-    Name = "Zer0EXE's scripts",
-    Icon = "rbxassetid://91871112732890"
+	Name = "Zer0EXE's scripts",
+	Icon = "rbxassetid://91871112732890"
 }
 
-
 Tab:Button{
-    Name = "Poopbum Minecraft",
-    Description = nil,
-    Callback = function()
+	Name = "Poopbum Minecraft",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/UcKZ4zLz/raw",true))()
     end
 }
 
-
 Tab:Button{
-    Name = "RL Backdoor Scanner",
-    Description = nil,
-    Callback = function()
+	Name = "RL Backdoor Scanner",
+	Description = nil,
+	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/BRxDPLBQ/raw",true))()
     end
 }
 
+Tab:Button{
+	Name = "Zer0EXE's Dex Honey",
+	Description = nil,
+	Callback = function()
+    loadstring(game:HttpGet("https://pastefy.app/JQOMbBoF/raw",true))()
+    end
+}
 
 Tab:Button{
-    Name = "Zer0EXE's Dex Honey",
-    Description = nil,
-    Callback = function()
-    loadstring(game:HttpGet("https://pastefy.app/JQOMbBoF/raw",true))()
+	Name = "Nyan Skybox",
+	Description = nil,
+	Callback = function()
+    -- Nyan>:D
+
+local Nyan = Instance.new("Sound")
+Nyan.Parent = game.workspace
+Nyan.SoundId = "rbxassetid://103141168562348"
+Nyan.Volume = 10
+Nyan.Pitch = 0.3
+Nyan.Name = "Nyan>_<"
+Nyan.Looped = true
+Nyan:Play()
+
+if game.Lighting:FindFirstChild("AnimatedSky") then return end
+
+local imageIds = {
+	50901998, 50902016, 50902051, 50902078,
+	50902097, 50902189, 50902216, 50902247,
+	50902255, 50902273, 50902286, 50902296
+}
+
+local sky = Instance.new("Sky")
+sky.Name = "Nyan>:D"
+sky.Parent = game.Lighting
+
+while true do
+	for _, id in ipairs(imageIds) do
+		local url = "http://www.roblox.com/asset/?id=" .. id
+		sky.SkyboxBk = url
+		sky.SkyboxDn = url
+		sky.SkyboxFt = url
+		sky.SkyboxLf = url
+		sky.SkyboxRt = url
+		sky.SkyboxUp = url
+		wait(0.06)
+
+	end
+end
+    end
+}
+
+Tab:Button{
+	Name = "Patric by Zer0EXE Edited By 7n8z",
+	Description = nil,
+	Callback = function()
+    local Patrick1 = Instance.new("Model") 
+local PatrickChar = Instance.new("Part") 
+local Laughter = Instance.new("Sound") 
+local SongOfHealing = Instance.new("Sound") 
+local Mesh = Instance.new("SpecialMesh") 
+local Texture = Instance.new("Texture") 
+local Giver = Instance.new("Script") 
+local PointLight = Instance.new("PointLight") 
+local Decal = Instance.new("Decal") 
+local Decal2 = Instance.new("Decal") 
+local Decal3 = Instance.new("Decal") 
+local Decal4 = Instance.new("Decal") 
+local Decal5 = Instance.new("Decal") 
+local Decal6 = Instance.new("Decal") 
+local Mouth = Instance.new("Part") 
+local Float = Instance.new("Script") 
+local Patrick = Instance.new("ObjectValue") 
+local GuiStuff = Instance.new("LocalScript") 
+local ScreenGui = Instance.new("ScreenGui") 
+local Frame = Instance.new("Frame") 
+local WeldConstraint = Instance.new("WeldConstraint") 
+local PointLight7 = Instance.new("PointLight") 
+Patrick1.Archivable = true 
+Patrick1.Name = "Patrick1" 
+Patrick1.Parent = game.Workspace
+Patrick1.PrimaryPart = nil 
+PatrickChar.Anchored = true
+PatrickChar.Archivable = true 
+PatrickChar.BackParamA = -0.5 
+PatrickChar.BackParamB = 0.5 
+PatrickChar.BackSurface = Enum.SurfaceType.Smooth 
+PatrickChar.BackSurfaceInput = Enum.InputType.NoInput 
+PatrickChar.BottomParamA = -0.5 
+PatrickChar.BottomParamB = 0.5 
+PatrickChar.BottomSurface = Enum.SurfaceType.Inlet 
+PatrickChar.BottomSurfaceInput = Enum.InputType.NoInput 
+PatrickChar.BrickColor = BrickColor.new("Medium stone grey") 
+PatrickChar.CFrame = CFrame.new(-1214455.5, 259692.484375, 86131.3046875)*CFrame.Angles(-0, -0, -1) 
+PatrickChar.CanCollide = true 
+PatrickChar.CollisionGroupId = "0" 
+PatrickChar.Color = Color3.new(0.639216, 0.635294, 0.647059) 
+PatrickChar.FrontParamA = -0.5 
+PatrickChar.FrontParamB = 0.5 
+PatrickChar.FrontSurface = Enum.SurfaceType.Smooth 
+PatrickChar.FrontSurfaceInput = Enum.InputType.NoInput 
+PatrickChar.LeftParamA = -0.5 
+PatrickChar.LeftParamB = 0.5 
+PatrickChar.LeftSurface = Enum.SurfaceType.Smooth 
+PatrickChar.LeftSurfaceInput = Enum.InputType.NoInput 
+PatrickChar.Locked = false 
+PatrickChar.Material = Enum.Material.Plastic 
+PatrickChar.Name = "PatrickChar" 
+PatrickChar.Orientation = Vector3.new(0, 0, 0) 
+PatrickChar.Parent = Patrick1 
+PatrickChar.Position = Vector3.new(0, 100.847, 0) 
+PatrickChar.Reflectance = 0 
+PatrickChar.RightParamA = -0.5 
+PatrickChar.RightParamB = 0.5 
+PatrickChar.RightSurface = Enum.SurfaceType.Smooth 
+PatrickChar.RightSurfaceInput = Enum.InputType.NoInput 
+PatrickChar.RotVelocity = Vector3.new(0, 0, 0) 
+PatrickChar.Rotation = Vector3.new(0, 0, 0) 
+PatrickChar.Shape = Enum.PartType.Block 
+PatrickChar.Size = Vector3.new(120.1087875366211, 152.79930114746094, 65.61380004882812) 
+PatrickChar.TopParamA = -0.5 
+PatrickChar.TopParamB = 0.5 
+PatrickChar.TopSurface = Enum.SurfaceType.Studs 
+PatrickChar.TopSurfaceInput = Enum.InputType.NoInput 
+PatrickChar.Transparency = 0 
+PatrickChar.Velocity = Vector3.new(0, 0, 0) 
+Laughter.Archivable = true 
+Laughter.EmitterSize = 10 
+Laughter.Looped = true 
+Laughter.MaxDistance = 10000 
+Laughter.Name = "Laughter" 
+Laughter.Parent = Patrick1 
+Laughter.PlayOnRemove = false 
+Laughter.PlaybackSpeed = 0.42100000381469727 
+Laughter.Playing = true 
+Laughter.RollOffMode = Enum.RollOffMode.Inverse 
+Laughter.SoundGroup = nil 
+Laughter.SoundId = "rbxassetid://7816195044" 
+Laughter.TimePosition = 0 
+Laughter.Volume = 0.6050000190734863 
+SongOfHealing.Archivable = true 
+SongOfHealing.EmitterSize = 10 
+SongOfHealing.Looped = true 
+SongOfHealing.MaxDistance = 10000 
+SongOfHealing.Name = "SongOfHealing" 
+SongOfHealing.Parent = Patrick1 
+SongOfHealing.PlayOnRemove = false 
+SongOfHealing.PlaybackSpeed = 1 
+SongOfHealing.Playing = true 
+SongOfHealing.RollOffMode = Enum.RollOffMode.Inverse 
+SongOfHealing.SoundGroup = nil 
+SongOfHealing.SoundId = "rbxassetid://9046435309" 
+SongOfHealing.TimePosition = 0 
+SongOfHealing.Volume = 2 
+Mesh.Archivable = true 
+Mesh.MeshId = "rbxassetid://455783801" 
+Mesh.MeshType = Enum.MeshType.FileMesh 
+Mesh.Name = "Mesh" 
+Mesh.Offset = Vector3.new(0, 0, 0) 
+Mesh.Parent = PatrickChar 
+Mesh.Scale = Vector3.new(1, 1, 1) 
+Mesh.TextureId = " " 
+Mesh.VertexColor = Vector3.new(1, 1, 1) 
+Texture.Archivable = true 
+Texture.Color3 = Color3.new(1, 1, 1) 
+Texture.Face = Enum.NormalId.Back 
+Texture.Name = "Texture" 
+Texture.Parent = PatrickChar 
+Texture.StudsPerTileU = 2 
+Texture.StudsPerTileV = 2 
+Texture.Texture = "rbxassetid://455783804" 
+Texture.Transparency = 0 
+Giver.Archivable = true 
+Giver.Disabled = true 
+Giver.Source = [[local Players = game:GetService("Players")
+
+local function give(model)
+	local funnyscript = script.Float:Clone()
+	funnyscript.Parent = model
+	funnyscript.Disabled = false
+end
+
+function PlayerJoined(Player)
+	Player.CharacterAdded:Connect(function()
+		local Character = Player.Character or Player.CharacterAdded:Wait()
+		if Character then
+			give(Character)
+		end
+	end)
+end
+
+for _, part in workspace:GetDescendants() do
+	if (part:IsA("BasePart") and (part.Name ~= "PatrickChar" and part.Name ~= "Mouth")) then
+		give(part)
+	end
+end
+
+workspace.DescendantAdded:Connect(function(instance)
+	if (instance:IsA("BasePart")) then
+		give(instance)
+	end
+end)
+
+Players.PlayerAdded:Connect(PlayerJoined)]] 
+Giver.Name = "Giver" 
+Giver.Parent = PatrickChar 
+PointLight.Archivable = true 
+PointLight.Brightness = 100 
+PointLight.Color = Color3.new(1, 0, 0.0156863) 
+PointLight.Enabled = true 
+PointLight.Name = "PointLight" 
+PointLight.Parent = PatrickChar 
+PointLight.Range = 250 
+PointLight.Shadows = false 
+Decal.Archivable = true 
+Decal.Color3 = Color3.new(1, 1, 1) 
+Decal.Face = Enum.NormalId.Front 
+Decal.Name = "Decal" 
+Decal.Parent = PatrickChar 
+Decal.Texture = "http://www.roblox.com/asset/?id=10644190121" 
+Decal.Transparency = 0 
+Decal2.Archivable = true 
+Decal2.Color3 = Color3.new(1, 1, 1) 
+Decal2.Face = Enum.NormalId.Back 
+Decal2.Name = "Decal2" 
+Decal2.Parent = PatrickChar 
+Decal2.Texture = "http://www.roblox.com/asset/?id=6279708028" 
+Decal2.Transparency = 0 
+Decal3.Archivable = true 
+Decal3.Color3 = Color3.new(1, 1, 1) 
+Decal3.Face = Enum.NormalId.Back 
+Decal3.Name = "Decal3" 
+Decal3.Parent = PatrickChar 
+Decal3.Texture = "http://www.roblox.com/asset/?id=10644188768" 
+Decal3.Transparency = 0 
+Decal4.Archivable = true 
+Decal4.Color3 = Color3.new(1, 1, 1) 
+Decal4.Face = Enum.NormalId.Left 
+Decal4.Name = "Decal4" 
+Decal4.Parent = PatrickChar 
+Decal4.Texture = "http://www.roblox.com/asset/?id=10644190121" 
+Decal4.Transparency = 0 
+Decal5.Archivable = true 
+Decal5.Color3 = Color3.new(1, 1, 1) 
+Decal5.Face = Enum.NormalId.Top 
+Decal5.Name = "Decal5" 
+Decal5.Parent = PatrickChar 
+Decal5.Texture = "http://www.roblox.com/asset/?id=10644190121" 
+Decal5.Transparency = 0 
+Decal6.Archivable = true 
+Decal6.Color3 = Color3.new(1, 1, 1) 
+Decal6.Face = Enum.NormalId.Right 
+Decal6.Name = "Decal6" 
+Decal6.Parent = PatrickChar 
+Decal6.Texture = "http://www.roblox.com/asset/?id=10644190121" 
+Decal6.Transparency = 0 
+Mouth.Anchored = false 
+Mouth.Archivable = true 
+Mouth.BackParamA = -0.5 
+Mouth.BackParamB = 0.5 
+Mouth.BackSurface = Enum.SurfaceType.Smooth 
+Mouth.BackSurfaceInput = Enum.InputType.NoInput 
+Mouth.BottomParamA = -0.5 
+Mouth.BottomParamB = 0.5 
+Mouth.BottomSurface = Enum.SurfaceType.Smooth 
+Mouth.BottomSurfaceInput = Enum.InputType.NoInput 
+Mouth.BrickColor = BrickColor.new("Medium stone grey") 
+Mouth.CFrame = CFrame.new(-1214455.25, 259704.609375, 86136.7109375)*CFrame.Angles(-0, -0, -1) 
+Mouth.CanCollide = true 
+Mouth.CollisionGroupId = "0" 
+Mouth.Color = Color3.new(0.639216, 0.635294, 0.647059) 
+Mouth.FrontParamA = -0.5 
+Mouth.FrontParamB = 0.5 
+Mouth.FrontSurface = Enum.SurfaceType.Smooth 
+Mouth.FrontSurfaceInput = Enum.InputType.NoInput 
+Mouth.LeftParamA = -0.5 
+Mouth.LeftParamB = 0.5 
+Mouth.LeftSurface = Enum.SurfaceType.Smooth 
+Mouth.LeftSurfaceInput = Enum.InputType.NoInput 
+Mouth.Locked = false 
+Mouth.Material = Enum.Material.Plastic 
+Mouth.Name = "Mouth" 
+Mouth.Orientation = Vector3.new(0, 0, 0) 
+Mouth.Parent = PatrickChar 
+Mouth.Position = Vector3.new(-1214455.25, 259704.609375, 86136.7109375) 
+Mouth.Reflectance = 0 
+Mouth.RightParamA = -0.5 
+Mouth.RightParamB = 0.5 
+Mouth.RightSurface = Enum.SurfaceType.Smooth 
+Mouth.RightSurfaceInput = Enum.InputType.NoInput 
+Mouth.RotVelocity = Vector3.new(0, 0, 0) 
+Mouth.Rotation = Vector3.new(0, 0, 0) 
+Mouth.Shape = Enum.PartType.Block 
+Mouth.Size = Vector3.new(4, 1, 2) 
+Mouth.TopParamA = -0.5 
+Mouth.TopParamB = 0.5 
+Mouth.TopSurface = Enum.SurfaceType.Smooth 
+Mouth.TopSurfaceInput = Enum.InputType.NoInput 
+Mouth.Transparency = 1 
+Mouth.Velocity = Vector3.new(0, 0, 0) 
+Float.Archivable = true 
+Float.Disabled = true 
+Float.Source = [[local waiter = math.random(4, 120)
+local suckVelocity = math.random(8, 15)
+task.wait(math.random(10, 120))
+
+local Players = game:GetService("Players")
+local Part = script.Parent
+local Model = Part:FindFirstAncestorWhichIsA("Model")
+local Player = Players:GetPlayerFromCharacter(Model)
+
+local Patrick = script.Patrick.Value
+Part.Anchored = true
+
+local TweenService = game:GetService("TweenService")
+
+local goal = {}
+goal.CFrame = CFrame.new(Patrick.PatrickChar.Mouth.Position.X, Patrick.PatrickChar.Mouth.Position.Y, Patrick.PatrickChar.Mouth.Position.Z)
+local info = TweenInfo.new(suckVelocity, Enum.EasingStyle.Cubic, Enum.EasingDirection.In)
+
+local tween = TweenService:Create(Part, info, goal)
+tween:Play()
+
+tween.Completed:Connect(function()
+	if (Player) then
+		local GuiStuff = script:WaitForChild("GuiStuff"):Clone()
+		GuiStuff.Parent = Player.PlayerGui
+		GuiStuff.Enabled = true
+		
+		Model:Destroy()
+	end
+	
+	Part:Destroy()
+end)]] 
+Float.Name = "Float" 
+Float.Parent = Giver 
+Patrick.Archivable = true 
+Patrick.Name = "Patrick" 
+Patrick.Parent = Float 
+Patrick.Value = nil 
+GuiStuff.Archivable = true 
+GuiStuff.Disabled = true 
+GuiStuff.Source = [[local TweenService = game:GetService("TweenService")
+
+local Players = game:GetService("Players")
+local Player = Players.LocalPlayer
+
+-- Gui
+local StarterGui = game:GetService("StarterGui")
+
+local max = 10
+for tries = 1, max do
+	local success = pcall(function()
+		StarterGui:SetCore("ResetButtonCallback", false)
+		StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.All, false)
+		StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Chat, false)
+	end)
+	
+	if (success) then
+		break
+	end
+	
+	task.wait(1)
+end
+
+local GUI = script.ScreenGui:Clone()
+GUI.Parent = Player.PlayerGui
+
+local Black = GUI.Frame
+
+local goal = {}
+goal.Transparency = 0
+
+local info = TweenInfo.new(8, Enum.EasingStyle.Linear, Enum.EasingDirection.In)
+
+local tween = TweenService:Create(Black, info, goal)
+tween:Play()]] 
+GuiStuff.Name = "GuiStuff" 
+GuiStuff.Parent = Float 
+ScreenGui.Archivable = true 
+ScreenGui.AutoLocalize = true 
+ScreenGui.DisplayOrder = 0 
+ScreenGui.Enabled = true 
+ScreenGui.IgnoreGuiInset = true 
+ScreenGui.Name = "ScreenGui" 
+ScreenGui.Parent = GuiStuff 
+ScreenGui.ResetOnSpawn = true 
+ScreenGui.RootLocalizationTable = nil 
+ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling 
+Frame.Active = false 
+Frame.AnchorPoint = Vector2.new(0, 0)
+Frame.Archivable = true 
+Frame.AutoLocalize = true 
+Frame.BackgroundColor3 = Color3.new(0, 0, 0) 
+Frame.BackgroundTransparency = 1 
+Frame.BorderColor3 = Color3.new(0.105882, 0.164706, 0.207843) 
+Frame.BorderSizePixel = 1 
+Frame.ClipsDescendants = false 
+Frame.LayoutOrder = 0 
+Frame.Name = "Frame" 
+Frame.NextSelectionDown = nil 
+Frame.NextSelectionLeft = nil 
+Frame.NextSelectionRight = nil 
+Frame.NextSelectionUp = nil 
+Frame.Parent = ScreenGui 
+Frame.Position = UDim2.new(0, 0, 0, 0)
+Frame.RootLocalizationTable = nil 
+Frame.Rotation = 0 
+Frame.Selectable = false 
+Frame.SelectionImageObject = nil 
+Frame.Size = UDim2.new(1, 0, 1, 0)
+Frame.SizeConstraint = Enum.SizeConstraint.RelativeXY 
+Frame.Style = Enum.FrameStyle.Custom 
+Frame.Visible = true 
+Frame.ZIndex = 1 
+WeldConstraint.Archivable = true 
+WeldConstraint.Enabled = true 
+WeldConstraint.Name = "WeldConstraint" 
+WeldConstraint.Parent = Mouth 
+WeldConstraint.Part0 = Mouth 
+WeldConstraint.Part1 = PatrickChar 
+PointLight7.Archivable = true 
+PointLight7.Brightness = 40 
+PointLight7.Color = Color3.new(1, 0, 0.0156863) 
+PointLight7.Enabled = true 
+PointLight7.Name = "PointLight7" 
+PointLight7.Parent = Mouth 
+PointLight7.Range = 60 
+PointLight7.Shadows = false
+
+local Lighting = game:GetService("Lighting")
+
+Lighting.ClockTime = 0
     end
 }
