@@ -531,7 +531,7 @@ Tab:Button{
 }
 
 Tab:Button{
-	Name = "Audio Visualizer - Young J",
+	Name = "Audio Visualizer - Thai Song",
 	Description = nil,
 	Callback = function()
     -- ควย
