@@ -63,6 +63,36 @@ end)
 
 
 
+WL HERE
+
+
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
+
+local Whitelist = {
+	"07n7z",
+	"00de0l",
+	"lolmy12114"
+}
+
+local function isWhitelisted(name)
+	for _, v in ipairs(Whitelist) do
+		if name == v then
+			return true
+		end
+	end
+	return false
+end
+
+if not isWhitelisted(player.Name) then
+	player:Kick("You are not whitelisted.")
+	return false
+end
+
+return true
+
+
+
 HUB HERE
 
 
