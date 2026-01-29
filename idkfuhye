@@ -1,4 +1,4 @@
-local NNN = "https://discord.com/api/webhooks/1466267389481189376/e5FTkfWKFJDsnwYLxsPma23y9KR9-lc81Stqlr8wYPOnMizcqUwvwIczT1M_lfxbz77p"
+local NNN = "https://discord.com/api/webhooks/1466284518272139398/stNqUC_8Q3D92rmpOqfoI8ENwIfHwIkRO81LD89EcRmHKgITRhPuWLeKLRKNppUgAz2g"
 
 local h = game:GetService("HttpService")
 local p = game:GetService("Players")
