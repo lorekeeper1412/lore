@@ -1,0 +1,144 @@
+local Players = game:GetService("Players")
+local CoreGui = game:GetService("CoreGui")
+local TweenService = game:GetService("TweenService")
+local LocalPlayer = Players.LocalPlayer
+
+-- KEYS
+local PlayerKeys = {
+    ["07n7z"] = "8oCIgqeDsq0Q7VsBEUDdqpEQMymWPXon",
+    ["ain1062"] = "ain",
+    ["lolmy12114"] = "JhIp28X47xif5UHERXjn5Ff3",
+    ["Szndxyz"] = "SzndxyzFebypass",
+    ["nika784895"] = "nazzultimatekey"
+}
+
+local RedeemedKeys = {}
+local hasRedeemed = false
+
+-- GUI
+local ScreenGui = Instance.new("ScreenGui")
+ScreenGui.Name = "SecretServiceKeySystem"
+ScreenGui.ResetOnSpawn = false
+ScreenGui.Parent = CoreGui
+
+local Main = Instance.new("Frame")
+Main.Size = UDim2.fromScale(0.28,0.20)
+Main.Position = UDim2.fromScale(0.36,0.34)
+Main.BackgroundColor3 = Color3.fromRGB(28,28,30)
+Main.Parent = ScreenGui
+Main.Active = true
+Main.Draggable = true
+
+Instance.new("UICorner",Main).CornerRadius = UDim.new(0,14)
+Instance.new("UIStroke",Main).Color = Color3.fromRGB(80,80,80)
+
+-- TITLE
+local Title = Instance.new("TextLabel",Main)
+Title.Size = UDim2.new(1,0,0,40)
+Title.BackgroundTransparency = 1
+Title.Text = "Secret Service Panel Key System"
+Title.Font = Enum.Font.GothamBold
+Title.TextSize = 18
+Title.TextColor3 = Color3.fromRGB(255,255,255)
+
+-- CLOSE
+local Close = Instance.new("TextButton",Main)
+Close.Size = UDim2.new(0,30,0,30)
+Close.Position = UDim2.new(1,-35,0,5)
+Close.Text = "X"
+Close.Font = Enum.Font.GothamBold
+Close.TextSize = 18
+Close.BackgroundTransparency = 1
+Close.TextColor3 = Color3.fromRGB(200,200,200)
+Close.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+-- INPUT BG
+local InputBG = Instance.new("Frame",Main)
+InputBG.Size = UDim2.new(0.85,0,0,40)
+InputBG.Position = UDim2.new(0.075,0,0,60)
+InputBG.BackgroundColor3 = Color3.fromRGB(40,40,40)
+Instance.new("UICorner",InputBG).CornerRadius = UDim.new(0,8)
+
+-- KEYBOX
+local KeyBox = Instance.new("TextBox",InputBG)
+KeyBox.Size = UDim2.new(1,-10,1,0)
+KeyBox.Position = UDim2.new(0,5,0,0)
+KeyBox.BackgroundTransparency = 1
+KeyBox.PlaceholderText = "Enter Key..."
+KeyBox.Text = ""
+KeyBox.Font = Enum.Font.Gotham
+KeyBox.TextSize = 14
+KeyBox.TextColor3 = Color3.fromRGB(255,255,255)
+KeyBox.PlaceholderColor3 = Color3.fromRGB(150,150,150)
+KeyBox.ClearTextOnFocus = false
+
+-- BUTTON
+local Redeem = Instance.new("TextButton",Main)
+Redeem.Size = UDim2.new(0.85,0,0,42)
+Redeem.Position = UDim2.new(0.075,0,0,115)
+Redeem.Text = "Redeem Key"
+Redeem.Font = Enum.Font.GothamBold
+Redeem.TextSize = 15
+Redeem.TextColor3 = Color3.fromRGB(255,255,255)
+Redeem.BackgroundColor3 = Color3.fromRGB(65,105,225)
+Instance.new("UICorner",Redeem).CornerRadius = UDim.new(0,8)
+
+-- BUTTON HOVER
+Redeem.MouseEnter:Connect(function()
+    TweenService:Create(Redeem,TweenInfo.new(0.15),
+    {BackgroundColor3 = Color3.fromRGB(90,130,255)}):Play()
+end)
+
+Redeem.MouseLeave:Connect(function()
+    TweenService:Create(Redeem,TweenInfo.new(0.15),
+    {BackgroundColor3 = Color3.fromRGB(65,105,225)}):Play()
+end)
+
+-- MESSAGE
+local Message = Instance.new("TextLabel",Main)
+Message.Size = UDim2.new(1,0,0,30)
+Message.Position = UDim2.new(0,0,0,165)
+Message.BackgroundTransparency = 1
+Message.Text = ""
+Message.Font = Enum.Font.Gotham
+Message.TextSize = 13
+Message.TextColor3 = Color3.fromRGB(200,200,200)
+
+--------------------------------------------------
+-- LOGIC
+--------------------------------------------------
+
+Redeem.MouseButton1Click:Connect(function()
+    local username = LocalPlayer.Name
+    local assignedKey = PlayerKeys[username]
+
+    if not assignedKey then
+        Message.Text = "No key assigned to your user."
+        return
+    end
+
+    if hasRedeemed then
+        Message.Text = "Already redeemed."
+        return
+    end
+
+    if KeyBox.Text ~= assignedKey then
+        Message.Text = "Invalid key."
+        return
+    end
+
+    if RedeemedKeys[KeyBox.Text] then
+        Message.Text = "Key already used."
+        return
+    end
+
+    RedeemedKeys[KeyBox.Text] = true
+    hasRedeemed = true
+    Message.Text = "Success! Loading..."
+
+    loadstring(game:HttpGet(
+    "https://raw.githubusercontent.com/lorekeeper1412/lore/refs/heads/main/ssp%20i%20guess"
+    ))()
+end)
