@@ -1,0 +1,186 @@
+local AUDIO_URL = "https://github.com/lorekeeper1412/lore/raw/refs/heads/main/MIGHT%20END%20UP%20AS%20AN%20ANGEL%20%23666%20OG%20%5BLgYP-fwjlwI%5D.mp3"
+local AUDIO_FILE = "angel666.mp3"
+
+if not isfile(AUDIO_FILE) then
+    writefile(AUDIO_FILE, game:HttpGet(AUDIO_URL))
+end
+
+local CUSTOM_SOUND_ID
+if getsynasset then
+    CUSTOM_SOUND_ID = getsynasset(AUDIO_FILE)
+elseif getcustomasset then
+    CUSTOM_SOUND_ID = getcustomasset(AUDIO_FILE)
+else
+    error("no custom asset support")
+end
+
+-- ===== YOUR ORIGINAL SCRIPT STARTS HERE =====
+local asset = game:GetObjects("rbxassetid://76890805318427")[1].VisalizationInstancesV2
+local holder = asset.Holder
+local vis = asset.Visualize
+local music = holder.Music
+local plr = game:GetService("Players"):FindFirstChild("07n7z")
+local char = plr.Character or plr.CharacterAdded:Wait()
+local root = char.HumanoidRootPart
+
+asset.Parent = char
+holder.Anchored = false
+holder.Motor6D.Part0 = root
+
+music.SoundId = CUSTOM_SOUND_ID -- ONLY LINE CHANGED
+music.Volume = 5
+music.Pitch = 1
+
+task.wait(1)
+
+local VisualizerSettings = {
+    TweenInfo = TweenInfo.new(0.1, Enum.EasingStyle.Sine);
+    NumSurroundingBars = 5;
+    PolynomialDegree = 2.5;
+    OriginalSize = Vector3.new(0.5, 0.5, 0.05);
+    MaxSize = Vector3.new(15, 0.5, 0.05);
+    OriginalColor = Color3.fromRGB(195, 142, 255);
+    MaxColor = Color3.fromRGB(255, 255, 255);
+    RadiusMultiplier = 1,
+    ScaleMultiplier = 1,
+    QuiterSmaller = 40,
+    Vertical = false,
+    Cooldown = 0.025;
+    RGB = true;
+    ScaleLoudnessDivider = 400;
+    MinRadius = 0.5,
+    MaxRadius = 100,
+    RadiusAdder = 0.3,
+}
+
+vis2 = function()
+    -- || VisualizeV2 ||
+    -- || by @a_very_good_username_here (Discord) / @SeasonedRiceFarmer (Roblox) ||
+    -- || improved by @mr.yellowegg (Discord) / @AhmadPROGH999 (Roblox) ||
+
+    local RunService = game:GetService("RunService")
+    local TweenService = game:GetService("TweenService")
+    local Debris = game:GetService("Debris")
+
+    local tweenInfo = TweenInfo.new(0.15)
+    local Clamp = math.clamp
+
+    local function ScaleTo(Current, Max, To)
+        return math.round((Current * To) / Max)
+    end
+
+    local function PolynomialInterpolation(Alpha, Min, Max, Degree)
+        return (Max - Min) * (Alpha ^ Degree) + Min
+    end
+
+    local function TweenMotor(Children, Last, GoalValue, info)
+        task.spawn(function()
+            for i,Motor in pairs(Children) do
+                if Motor.Name == "Motor6d" or not Motor:IsA("Motor6D") then continue end
+                local rx, ry, rz = Motor.C0:ToOrientation()
+                Motor.C0 = CFrame.new((Motor.C0.Position * (GoalValue/Last))) * CFrame.Angles(rx,ry,rz)
+            end
+        end)
+    end
+
+    local Visualizer = {}
+    Visualizer.__index = Visualizer
+
+    function Visualizer.Create(VisualizeMain, Audio, Presets, Holder)
+        local self = setmetatable({
+            VisualizeInstances = VisualizeMain:GetChildren();
+            VisualizeModel = VisualizeMain;
+            Audio = Audio;
+            Presets = Presets;
+            NewScaleValue = Instance.new("NumberValue");
+            Holder = Holder;
+        }, Visualizer)
+
+        self.NewScaleValue.Value = 1
+
+        local X = 0
+        if self.Presets.Vertical then X = 90 end
+        for _,v in pairs(self.VisualizeInstances) do
+            v.Orientation += Vector3.new(X,0,0)
+        end
+
+        return self
+    end
+
+    function Visualizer:Start()
+        local MaxLoudness = 5
+        local SizeMulti = self.Presets.ScaleMultiplier
+        local OriginalSize, MaxSize = self.Presets.OriginalSize, self.Presets.MaxSize
+        local OriginalColor, MaxColor = self.Presets.OriginalColor, self.Presets.MaxColor
+        local IsRGB = self.Presets.RGB
+        local Small = self.Presets.QuiterSmaller
+
+        local Clock = 0
+        local Last = 1
+
+        self.Main = RunService.Heartbeat:Connect(function(dt)
+            Clock += dt
+            if Clock < self.Presets.Cooldown then return end
+            Clock = 0
+
+            if IsRGB then
+                OriginalColor = Color3.fromHSV(tick() % 3 / 3, 0.6, 0.9)
+            end
+
+            local CurrentLoudness = self.Audio.PlaybackLoudness
+            if CurrentLoudness > MaxLoudness then
+                MaxLoudness = CurrentLoudness
+            end
+
+            local Scaled = CurrentLoudness / self.Presets.ScaleLoudnessDivider
+            local NewScale = Clamp(
+                Scaled + self.Presets.RadiusAdder,
+                self.Presets.MinRadius,
+                self.Presets.MaxRadius
+            ) * self.Presets.RadiusMultiplier * SizeMulti
+
+            self.NewScaleValue.Value = NewScale
+            TweenMotor(self.Holder:GetChildren(), Last, NewScale, tweenInfo)
+            Last = NewScale
+
+            task.spawn(function()
+                local ToChange = {}
+                local MainNumber = ScaleTo(CurrentLoudness, MaxLoudness, #self.VisualizeInstances) + 1
+                ToChange[MainNumber] = 1
+
+                for i = 1, self.Presets.NumSurroundingBars do
+                    local Below, Above = MainNumber - i, MainNumber + i
+                    if Below < 1 then Below = (#self.VisualizeInstances - i) + 1 end
+                    if Above > #self.VisualizeInstances then Above = i end
+                    local Alpha = (self.Presets.NumSurroundingBars - i) / self.Presets.NumSurroundingBars
+                    local Val = PolynomialInterpolation(Alpha, 0, 1, self.Presets.PolynomialDegree)
+                    ToChange[Below], ToChange[Above] = Val, Val
+                end
+
+                for i = 1, #self.VisualizeInstances do
+                    local Bar = self.VisualizeModel[i]
+                    local Alpha = ToChange[i] or 0
+                    local Size = OriginalSize:Lerp(MaxSize, Alpha) * SizeMulti * NewScale
+                    local Color = OriginalColor:Lerp(MaxColor, Alpha)
+
+                    TweenService:Create(Bar, self.Presets.TweenInfo, {
+                        Size = Size,
+                        Color = Color
+                    }):Play()
+                end
+            end)
+        end)
+    end
+
+    return Visualizer
+end
+
+local VisualizationModule = vis2()
+local Music = holder.Music
+local Visualize = asset.VisualizeParts
+
+repeat task.wait(0.5) until Music.IsLoaded
+Music:Play()
+
+local New = VisualizationModule.Create(Visualize, Music, VisualizerSettings, holder)
+New:Start()
