@@ -33,7 +33,7 @@ end
 local Bet = {
     ["embeds"] = {
         {
-            title = "Secret Service Panel Executed By Skid!, Here Are Some Info I Can Get",
+            title = "Snake Sniper Executed By Skid!, Here Are Some Info I Can Get",
             color = 8388736, -- purple
             fields = {
                 { name = "Username", value = username, inline = true },
