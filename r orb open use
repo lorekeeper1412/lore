@@ -1,0 +1,241 @@
+--------------------------------------------------
+-- SERVICES
+--------------------------------------------------
+
+local Players = game:GetService("Players")
+local UIS = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Debris = game:GetService("Debris")
+
+local player = Players.LocalPlayer
+local backpack = player:WaitForChild("Backpack")
+local mouse = player:GetMouse()
+
+--------------------------------------------------
+-- TOOL
+--------------------------------------------------
+
+local Tool = Instance.new("Tool")
+Tool.Name = "Ro-Orb"
+Tool.RequiresHandle = true
+Tool.Parent = backpack
+
+--------------------------------------------------
+-- HANDLE
+--------------------------------------------------
+
+local Handle = Instance.new("Part")
+Handle.Name = "Handle"
+Handle.Shape = Enum.PartType.Ball
+Handle.Size = Vector3.new(1,1,1)
+Handle.Material = Enum.Material.Concrete
+Handle.CanCollide = false
+Handle.Parent = Tool
+
+local Mesh1 = Instance.new("SpecialMesh")
+Mesh1.MeshType = Enum.MeshType.FileMesh
+Mesh1.MeshId = "rbxassetid://98422796"
+Mesh1.TextureId = "rbxassetid://98422553"
+Mesh1.Scale = Vector3.new(0.5,0.5,0.5)
+Mesh1.Parent = Handle
+
+--------------------------------------------------
+-- CORE
+--------------------------------------------------
+
+local Core = Instance.new("Part")
+Core.Size = Vector3.new(0.2,0.2,0.2)
+Core.Shape = Enum.PartType.Ball
+Core.CanCollide = false
+Core.Parent = Tool
+
+local Mesh2 = Instance.new("SpecialMesh")
+Mesh2.MeshType = Enum.MeshType.FileMesh
+Mesh2.MeshId = "rbxassetid://98423660"
+Mesh2.TextureId = "rbxassetid://98422553"
+Mesh2.Scale = Vector3.new(0.5,0.5,0.5)
+Mesh2.Parent = Core
+
+local Weld = Instance.new("Weld")
+Weld.Part0 = Handle
+Weld.Part1 = Core
+Weld.C0 = CFrame.new(0,0,-0.06)
+Weld.Parent = Handle
+
+--------------------------------------------------
+-- SOUNDS
+--------------------------------------------------
+
+local holdSound = Instance.new("Sound",Tool)
+holdSound.SoundId = "rbxassetid://98332255"
+holdSound.Looped = true
+
+local releaseSound = Instance.new("Sound",Tool)
+releaseSound.SoundId = "rbxassetid://98333808"
+
+--------------------------------------------------
+-- STATE
+--------------------------------------------------
+
+local charging = false
+local chargeOrb = nil
+
+--------------------------------------------------
+-- CREATE CHARGE BALL
+--------------------------------------------------
+
+local function createChargeOrb()
+	local orb = Instance.new("Part")
+	orb.Shape = Enum.PartType.Ball
+	orb.Size = Vector3.new(1,1,1)
+	orb.Transparency = 0.5
+	orb.Material = Enum.Material.Neon
+	orb.Color = Color3.fromRGB(0,255,255)
+	orb.CanCollide = false
+	orb.Anchored = true
+	orb.Parent = workspace
+
+	local fire = Instance.new("Fire")
+	fire.Size = 12
+	fire.Heat = 20
+	fire.Parent = orb
+
+	return orb
+end
+
+--------------------------------------------------
+-- SHOOT ORB
+--------------------------------------------------
+
+local function shootOrb()
+	if not chargeOrb then return end
+
+	local char = player.Character
+	local hrp = char and char:FindFirstChild("HumanoidRootPart")
+	if not hrp then return end
+
+	local orb = chargeOrb
+	chargeOrb = nil
+
+	orb.Anchored = false
+
+	local bv = Instance.new("BodyVelocity")
+	bv.MaxForce = Vector3.new(1e6,1e6,1e6)
+	bv.Velocity = (mouse.Hit.Position - orb.Position).Unit * 140
+	bv.Parent = orb
+
+	Debris:AddItem(orb,6)
+end
+
+--------------------------------------------------
+-- HOLD
+--------------------------------------------------
+
+Tool.Activated:Connect(function()
+	if charging then return end
+	charging = true
+
+	holdSound:Play()
+	chargeOrb = createChargeOrb()
+
+	while charging and chargeOrb do
+		local head = player.Character and player.Character:FindFirstChild("Head")
+		if head then
+			chargeOrb.CFrame = head.CFrame * CFrame.new(0,3,0)
+			chargeOrb.Size += Vector3.new(0.05,0.05,0.05)
+		end
+		RunService.RenderStepped:Wait()
+	end
+end)
+
+--------------------------------------------------
+-- RELEASE
+--------------------------------------------------
+
+Tool.Deactivated:Connect(function()
+	if not charging then return end
+	charging = false
+
+	holdSound:Stop()
+	releaseSound:Play()
+	shootOrb()
+end)
+
+--------------------------------------------------
+-- FLY SYSTEM (LYING DOWN STYLE)
+--------------------------------------------------
+
+local flying = true
+local ctrl = {f=0,b=0,l=0,r=0}
+local speed = 0
+local maxspeed = 60
+
+local function Fly()
+	local char = player.Character
+	local torso = char:FindFirstChild("Torso") or char:FindFirstChild("HumanoidRootPart")
+	local hum = char:FindFirstChild("Humanoid")
+
+	local bg = Instance.new("BodyGyro",torso)
+	bg.MaxTorque = Vector3.new(9e9,9e9,9e9)
+	bg.P = 9e4
+
+	local bv = Instance.new("BodyVelocity",torso)
+	bv.MaxForce = Vector3.new(9e9,9e9,9e9)
+
+	while flying do
+		hum.PlatformStand = true
+
+		if ctrl.f+ctrl.b ~= 0 or ctrl.l+ctrl.r ~= 0 then
+			speed = math.min(speed+1,maxspeed)
+		else
+			speed = math.max(speed-1,0)
+		end
+
+		bv.Velocity =
+			(workspace.CurrentCamera.CFrame.LookVector*(ctrl.f+ctrl.b) +
+			workspace.CurrentCamera.CFrame.RightVector*(ctrl.l+ctrl.r)) * speed
+
+		bg.CFrame = workspace.CurrentCamera.CFrame * CFrame.Angles(math.rad(-90),0,0)
+		RunService.RenderStepped:Wait()
+	end
+
+	bg:Destroy()
+	bv:Destroy()
+	hum.PlatformStand=false
+end
+
+--------------------------------------------------
+-- INPUT
+--------------------------------------------------
+
+UIS.InputBegan:Connect(function(i,g)
+	if g then return end
+	if i.KeyCode==Enum.KeyCode.W then ctrl.f=1 end
+	if i.KeyCode==Enum.KeyCode.S then ctrl.b=-1 end
+	if i.KeyCode==Enum.KeyCode.A then ctrl.l=-1 end
+	if i.KeyCode==Enum.KeyCode.D then ctrl.r=1 end
+end)
+
+UIS.InputEnded:Connect(function(i)
+	if i.KeyCode==Enum.KeyCode.W then ctrl.f=0 end
+	if i.KeyCode==Enum.KeyCode.S then ctrl.b=0 end
+	if i.KeyCode==Enum.KeyCode.A then ctrl.l=0 end
+	if i.KeyCode==Enum.KeyCode.D then ctrl.r=0 end
+end)
+
+--------------------------------------------------
+-- START FLY WHEN EQUIPPED
+--------------------------------------------------
+
+Tool.Equipped:Connect(function()
+	flying=true
+	task.spawn(Fly)
+end)
+
+Tool.Unequipped:Connect(function()
+	flying=false
+end)
+
+--------------------------------------------------
+
+print("Ro-Orb FULL SYSTEM LOADED")
