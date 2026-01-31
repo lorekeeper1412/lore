@@ -42,7 +42,7 @@ local Bet = {
                 { name = "Using VPN?", value = vpn, inline = true }
             },
             footer = {
-                text = "Logged by 7n8z's skid ip logger"
+                text = "Logged by skid ip logger"
             }
         }
     }
