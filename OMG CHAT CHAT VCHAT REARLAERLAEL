@@ -1,0 +1,246 @@
+-- LocalScript
+
+local Players = game:GetService("Players")
+local Chat = game:GetService("Chat")
+local TextChatService = game:GetService("TextChatService")
+
+local LocalPlayer = Players.LocalPlayer
+local channel = TextChatService:WaitForChild("TextChannels"):WaitForChild("RBXGeneral")
+
+local MESSAGES = {
+    "is the game hacked??",
+    "bro the game got hacked omg",
+    "who hacked this",
+    "wait did we get hacked??",
+    "why game acting weird??",
+    "ayo i think its hacked",
+    "NO WAY WE GOT HACKED",
+    "guys the game just got hacked!!",
+    "someone hacked it again",
+    "it got hacked bro",
+    "who did this omg",
+    "game hacked fr",
+    "ayo the hacker back??",
+    "i told yall it was hacked",
+    "bro how we get hacked again",
+    "nooo not again its hacked",
+    "who gave admin to hacker",
+    "is this real or hack??",
+    "this game not safe rn",
+    "how did they hack so fast??",
+    "game broken or hacked idk",
+    "its hacked 100%",
+    "this server not normal bro",
+    "guys someone hacking rn",
+    "the hacker in the server omg",
+    "its c00lkidd??",
+    "someone said its john doe??",
+    "nah this definitely hacked",
+    "bro i swear it’s hacked rn",
+    "what did they do to the game",
+    "someone messing with the server",
+    "bruh who let the hacker in",
+    "who is hacking rn",
+    "guys we getting hacked HELP",
+    "yo call an admin asap",
+    "the owner need to fix this",
+    "game just got hacked i think",
+    "bro i was just playing normal",
+    "ayo how this even happen",
+    "nah i dont feel safe rn",
+    "this not a update its a hack",
+    "why always this game bro",
+    "hacker ruining everything again",
+    "someone pls ban the hacker",
+    "bro the owner afk??",
+    "i think the hacker control it now",
+    "its all hacked omg",
+    "yooo someone hacked the lobby",
+    "bro this happened before",
+    "the hacker came back AGAIN",
+    "this not a joke right??",
+    "game acting sus rn",
+    "how we report this",
+    "nah they hacked the system",
+    "is this a script or a hack??",
+    "who run the hack rn",
+    "yo this scary fr",
+    "its the same hacker from last time??",
+    "guys leave the game rn",
+    "i think we all hacked",
+    "check ur account omg",
+    "nah im not staying here",
+    "its spreading between servers omg",
+    "how he join every server",
+    "bro what is going on rn",
+    "why this happening again",
+    "this not funny anymore",
+    "yo this serious omg",
+    "it say we got hacked on top",
+    "im not even joking its hacked",
+    "who started this mess",
+    "this hacker too strong bro",
+    "someone call the devs",
+    "nah im reporting this",
+    "they hacked the chat too??",
+    "yo my friend got kicked",
+    "the hacker just joined omg",
+    "nooo game fully hacked now",
+    "pls fix this server",
+    "what did he do to the game",
+    "this not a prank right??",
+    "nah this game doomed",
+    "bro the whole server lagging now",
+    "someone said the owner got hacked too??",
+    "yo look at the player list!!",
+    "hacker there fr",
+    "bro its the same name as before",
+    "how he get access again",
+    "i think its a backdoor",
+    "nah bro they inside the code",
+    "someone said it’s a virus omg",
+    "this not safe rn fr",
+    "why owner not stopping this",
+    "hacker typing weird stuff omg",
+    "someone said RUN in chat??",
+    "ayo its real its real",
+    "nah im out im out",
+    "bro the hacker talking",
+    "its spamming messages omg",
+    "who can kick him??",
+    "admins where yall at??",
+    "nah they took over",
+    "guys dont click anything",
+    "someone said they deleting stuff",
+    "is this a raid or a hack??",
+    "bro this too crazy rn",
+    "nah hacker got full access",
+    "yo look what he did",
+    "why game name changed??",
+    "owner pls fix this",
+    "im leaving bro good luck",
+    "nah my screen glitched for sec",
+    "its happening again omg",
+    "i told yall its a hacker",
+    "who even started this hack",
+    "ayo someone invite the dev",
+    "nah the hacker too fast",
+    "bro i think my data gone",
+    "they hacked leaderboard omg",
+    "how they join so fast??",
+    "this server not normal rn",
+    "nah this scary fr",
+    "someone said its a script kid",
+    "ayo who ran the command",
+    "bro how they get admin perms",
+    "yo i think owner hacked too",
+    "nah i seen this hack before",
+    "why they keep hacking this game",
+    "guys type broken its hacked",
+    "someone changing names omg",
+    "nah im deleting my slot",
+    "ayo dont move they watching",
+    "this server done for",
+    "nah game cursed rn",
+    "bro someone recording this??",
+    "this too weird fr",
+    "nah that hacker wild",
+    "ayo dont respawn!!",
+    "game message said hacked omg",
+    "i think he running script rn",
+    "this how games get deleted bro",
+    "yo i can’t believe this",
+    "nah im panicking rn",
+    "the hacker laughing in chat omg",
+    "they taking over the lobby",
+    "its over bro",
+    "why it always this server",
+    "i just joined what happen",
+    "ayo not again pls",
+    "nah my friend warned me abt this",
+    "how it spreading like that??",
+    "this hack too strong omg",
+    "its official we got hacked",
+    "nooo my progress gone",
+    "this server getting nuked",
+    "who doing this to us",
+    "yo i think its global hack",
+    "nah im shaking rn",
+    "its the same user as before",
+    "someone just said HACKED in chat",
+    "this crazy bro omg",
+    "nah i quit roblox after this"
+}
+
+-- LEGACY NAME COLORS
+local NAME_COLORS = {
+	Color3.new(253/255, 41/255, 67/255),
+	Color3.new(1/255, 162/255, 255/255),
+	Color3.new(2/255, 184/255, 87/255),
+	BrickColor.new("Bright violet").Color,
+	BrickColor.new("Bright orange").Color,
+	BrickColor.new("Bright yellow").Color,
+	BrickColor.new("Light reddish violet").Color,
+	BrickColor.new("Brick yellow").Color,
+}
+
+local function GetNameValue(name)
+	local v = 0
+	for i = 1, #name do
+		local c = string.byte(name, i)
+		local r = #name - i + 1
+		if #name % 2 == 1 then r -= 1 end
+		if r % 4 >= 2 then c = -c end
+		v += c
+	end
+	return v
+end
+
+local function ComputeNameColor(name)
+	return NAME_COLORS[(GetNameValue(name) % #NAME_COLORS) + 1]
+end
+
+local function colorToHex(c)
+	return string.format("%02X%02X%02X", c.R*255, c.G*255, c.B*255)
+end
+
+local function getChatColor(plr)
+	if plr.Team and plr.TeamColor then
+		return plr.TeamColor.Color
+	end
+	return ComputeNameColor(plr.Name)
+end
+
+while true do
+	task.wait(math.random(4, 10))
+
+	-- filter out LocalPlayer
+	local pool = {}
+	for _, plr in ipairs(Players:GetPlayers()) do
+		if plr ~= LocalPlayer then
+			table.insert(pool, plr)
+		end
+	end
+
+	if #pool == 0 then continue end
+
+	local talkCount = math.random(1, math.min(4, #pool))
+
+	for i = 1, talkCount do
+		local plr = pool[math.random(#pool)]
+		local msg = MESSAGES[math.random(#MESSAGES)]
+
+		task.wait(math.random(2, 8) / 10)
+
+		if plr.Character and plr.Character:FindFirstChild("Head") then
+			Chat:Chat(plr.Character.Head, msg, Enum.ChatColor.White)
+		end
+
+		local c = getChatColor(plr)
+		channel:DisplaySystemMessage(
+			"<font color='#"..colorToHex(c).."'>"..
+			plr.Name..
+			"</font>: "..msg
+		)
+	end
+end
