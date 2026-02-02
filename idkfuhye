@@ -1002,15 +1002,6 @@ local Tab = GUI:Tab{
 }
 
 Tab:Button{
-	Name = "Cammy's Secret Service Panel (7n8z. whitelisted)",
-	Description = nil,
-	Callback = function()
-    script_key="ukwxxmCrvgvAUhTAZOBWeTKDyOJXjlNn";
-    loadstring(game:HttpGet("https://api.luarmor.net/files/v3/loaders/64a78171c5adc14881b65c7f435c711e.lua"))()
-    end
-}
-
-Tab:Button{
 	Name = "Secret Service Panel Public Built V100",
 	Description = nil,
 	Callback = function()
