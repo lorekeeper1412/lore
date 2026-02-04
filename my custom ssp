@@ -18054,6 +18054,8 @@ Frame54.Position = UDim2.new(1.23314, 0, 0.1969, 0);
 Frame54.BorderColor3 = Color3.fromRGB(28, 43, 54);
 Frame54.BackgroundTransparency = 1;
 
+
+
 -- tabs
 local tabs = Instance.new("Frame", adm);
 tabs.ZIndex = 20;
@@ -18401,13 +18403,16 @@ barlabel.Position = UDim2.new(0, 0, 0.89831, 3);
 			end
 		end
 		
-		if arg[1] == "walkspeed" or arg[1] == "ws" then
-			if arg[2] then
-				for i,target in pairs(get_players(arg[2])) do
-					BindaEvent:Fire("walkspeed", target, arg[3])
-				end
-			end
-		end
+        if arg[1] == "walkspeed" or arg[1] == "ws" then
+	        if arg[2] then
+		        for i, target in pairs(get_players(arg[2])) do
+			    if target.Character and target.Character:FindFirstChild("Humanoid") then
+				target.Character.Humanoid.WalkSpeed = tonumber(arg[3]) or target.Character.Humanoid.WalkSpeed
+			        end
+		        end
+	        end
+        end
+
 
 		
 		if arg[1] == "hat" then
